@@ -1,53 +1,49 @@
-<!-- 
-DISPLAY QUESTIONS 
-REMOVE ALL #'S FIRST
-<% #@questions.each do |question| %>
-  <%#= question.content %>
-  <%#= question.category %>
-  <%#= question.option_a %>
-  <%#= question.option_b %>
-  question expiry time to come later
-<% #end %>
--->
-
 <div class="container">
   <div class="row">
-    <div class="col s12">
-      <div class="title z-depth-3">
-        Khaled Ipsum
-      </div>
-    </div>
-    <div class="question col s6 z-depth-3">
-      <div class="row">
-        <div class="col s2">
-          <div class="left-button">
-            <a class="btn-floating btn-large waves-effect waves-light"><i class="check material-icons">done</i></a>
-          </div>
-        </div>
-        <div class="col s10">
-          <div class="question-left">
-            <p>
-              Let’s see what Chef Dee got that they don’t want us to eat. Stay focused. Eliptical talk. It’s important to use cocoa butter. It’s the key to more success, why not live smooth? Why live rough?
-            </p>
-          </div>
+    <% @questions.each do |question| %>
+      <div class="col s4">
+        <div class="category z-depth-3">
+          <%=question.category%>
         </div>
       </div>
-    </div>
-    <div class="question col s6 z-depth-3">
-      <div class="row">
-        <div class="col s10">
-          <div class="question-right">
-            <p>
-              Let’s see what Chef Dee got that they don’t want us to eat. Stay focused. Eliptical talk. It’s important to use cocoa butter. It’s the key to more success, why not live smooth? Why live rough?
-            </p>
-          </div>
+      <div class="col s4">
+        <div class="title z-depth-3">
+          <%=question.content%>
         </div>
-        <div class="col s2">
-          <div class="right-button">
-            <a class="btn-floating btn-large waves-effect waves-light"><i class="check material-icons">done</i></a>
+      </div>
+      <div class="col s4"></div>
+      <div class="question col s6 z-depth-3">
+        <div class="row">
+          <div class="col s2">
+            <div class="left-button">
+              <a class="btn-floating btn-large waves-effect waves-light"><i class="check material-icons">done</i></a>
+            </div>
+          </div>
+          <div class="col s10">
+            <div class="question-left">
+              <p>
+                <%=question.option_a%>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <div class="question col s6 z-depth-3">
+        <div class="row">
+          <div class="col s10">
+            <div class="question-right">
+              <p>
+                <%=question.option_b%>
+              </p>
+            </div>
+          </div>
+          <div class="col s2">
+            <div class="right-button">
+              <a class="btn-floating btn-large waves-effect waves-light"><i class="check material-icons">done</i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
