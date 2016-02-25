@@ -1,6 +1,14 @@
 # enable :sessions [already in config/environment.rb]
 # For voting create conditional if vote.user_id && vote.question_id then crash
+helpers do
+  def current_user
+    @user = User.find(1) #ONLY FOR TEST PURPOSE
+  end
+end
 
+before do 
+  current_user
+end
 ### FOR TEST PAGE ###
 
 get '/test' do
