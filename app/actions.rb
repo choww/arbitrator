@@ -12,7 +12,8 @@ end
 ### FOR TEST PAGE ###
 
 get '/test' do
-  @questions = Question.all
+  questions = Question.all
+  @questions = questions.order(created_at: :desc)
   erb :test
 end
 
@@ -23,7 +24,8 @@ before do
 end
 
 get '/' do
-  @questions = Question.all
+  questions = Question.all
+  @questions = questions.order(created_at: :desc)
   erb :index
 end
 
@@ -47,7 +49,7 @@ post '/' do
   end 
 end
 
-post 'questions/:qid/vote' do
+post 'questions/:id/vote' do
   @vote = @current_user.votes.new(
     value: params[:option].to_i,
     question_id: params[:qid])
