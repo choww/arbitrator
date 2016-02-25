@@ -7,7 +7,8 @@
     <%= question.votes.where(value: 0).count %><br/>
     <button value="1" name="option"><%= question.option_b %></button>: 
     <%= question.votes.where(value: 1).count %><br/>
-    expire at: <%= format_time(Time.now + question.time.to_i.seconds) %>
+    expire at: <%= format_time(expire_time(question)) %>
+    <hr>
 <% end %>
 
 <p>

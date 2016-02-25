@@ -1,21 +1,31 @@
 # enable :sessions [already in config/environment.rb]
 # For voting create conditional if vote.user_id && vote.question_id then crash
-
+before do 
+  current_user if logged_in? 
+end
 ### FOR TEST PAGE ###
 
 get '/test' do
-  @questions = Question.all
+  questions = Question.all
+  @questions = questions.order(created_at: :desc)
   erb :test
 end
 
 ### THE REAL ROUTES ###
 
-before do
-  current_user if logged_in?
+get '/' do
+  @questions = curr_category.order(created_at: :desc)
+  erb :index
 end
 
-get '/' do
-  @questions = Question.all
+get '/category/:cat_name' do
+  if params[:cat_name] == current_user.id
+    # or @questions = current_user.questions
+    @questions = Question.where(user_id: current_user.id)
+  else
+    session[:category] = params[:cat_name]
+    @questions = Question.where(category: params[:cat_name])
+  end
   erb :index
 end
 
@@ -23,6 +33,7 @@ get '/questions/new' do
   @question = Question.new
   erb :'/questions/new'
 end
+
 
 post '/' do
   @question = current_user.questions.new(
@@ -36,11 +47,11 @@ post '/' do
     redirect '/'
   else
     erb :'/questions/new'
-  end
+  end 
 end
 
 post 'questions/:qid/vote' do
-  @vote = @current_user.votes.new(
+  @vote = current_user.votes.new(
     value: params[:option].to_i,
     question_id: params[:qid])
   if @vote.save
@@ -49,22 +60,23 @@ post 'questions/:qid/vote' do
     redirect '/'
   end
 end
+
 # ##################################
 # #Gets                            #
 # ##################################
 
-# #Main page where questions is sorted by created_at by default, it can go into
+# #Main page where questions is sorted by created_at by default, it can go into 
 # #any category
-# get '/' do
+# get '/' do 
 #   @user = User.find(session["user"])
 #   #if session["category"] == nil
 #     #questions = Question.all #This may change based on the category
 #   # else
 #   #   questions = Question.where('category_id = #{session["user"]}')
-#   # end
+#   # end 
 #   #if category is set by session["category"] which set to the category_id in the questions table
 #   #
-#   #@questions = questions.order(created_at: :desc)
+#   #@questions = questions.order(created_at: :desc) 
 # #This orders it by created_at with the highest value at the top(most recent)
 #   erb :index
 # end
