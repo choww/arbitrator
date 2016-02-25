@@ -20,10 +20,8 @@ class Question < ActiveRecord::Base
   end  
 
   def close_expired
-    if expired?
       self.resolved = true
       self.save
-    end
   end
 
   def vote_count(answer)

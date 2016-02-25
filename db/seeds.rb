@@ -16,6 +16,7 @@ user_g = User.create(username: "Plague", email: "fisher@shortcircuit.com", passw
 ################
 q_a = user_a.questions.create(category: "sports", content: "Pippen v. Jordan", time: 60, option_a: "Pippen", option_b: "Jordan")
 q_b = user_a.questions.create(category: "sports", content: "Jordan v. Curry", option_a: "Jordan", option_b: "Curry")
+q_b = user_b.questions.create(category: "food", content: "Tacos v. Burritos", option_a: "Taco", option_b: "Burrito")
 
 ############
 #Test Votes#
