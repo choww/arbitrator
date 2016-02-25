@@ -39,7 +39,7 @@ get '/questions/new' do
 end
 
 post '/' do
-  @question = @current_user.questions.new(
+  @question = @user.questions.new(
     category: params[:category],
     content: params[:content],
     time: params[:time_limit].to_i,
@@ -54,7 +54,7 @@ post '/' do
 end
 
 post 'questions/:qid/vote' do
-  @vote = @current_user.votes.new(
+  @vote = @user.votes.new(
     value: params[:option].to_i,
     question_id: params[:qid])
   if @vote.save
