@@ -4,7 +4,7 @@ helpers do
   end
 
   def current_user
-    @current_user = User.find(session[:user_id])
+    @user = User.find(1) #ONLY FOR TEST PURPOSE
   end
 
   def curr_category
