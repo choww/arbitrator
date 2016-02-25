@@ -1,13 +1,7 @@
 # enable :sessions [already in config/environment.rb]
 # For voting create conditional if vote.user_id && vote.question_id then crash
-helpers do
-  def current_user
-    @user = User.find(1) #ONLY FOR TEST PURPOSE
-  end
-end
-
 before do 
-  current_user
+  current_user if logged_in? 
 end
 ### FOR TEST PAGE ###
 
@@ -18,10 +12,6 @@ get '/test' do
 end
 
 ### THE REAL ROUTES ###
-
-before do
-  current_user if logged_in? 
-end
 
 get '/' do
   @questions = Question.where(category: curr_category).order(created_at: :desc)
