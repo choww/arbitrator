@@ -4,4 +4,12 @@ class Vote < ActiveRecord::Base
   validates :question_id, presence: true
   validates :user_id, presence: true
   validates :value, presence: true
+  # callback :resolve, if: :expired
+  # validate :no votng if expired --maybe
+  # def no voting if expired method
+  #   if expired
+  #     adk
+  #   end
+  # end
+  #     
 end

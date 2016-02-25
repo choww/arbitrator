@@ -15,7 +15,13 @@ before do
 end
 
 get '/' do
-  @questions = Question.all
+  @questions = Question.where(category: curr_category)
+  erb :index
+end
+
+get '/category/:cat_name' do
+  session[:category] = params[:cat_name]
+  @questions = Question.where(category: params[:cat_name])
   erb :index
 end
 
@@ -49,6 +55,7 @@ post 'questions/:qid/vote' do
     redirect '/'
   end
 end
+
 # ##################################
 # #Gets                            #
 # ##################################
