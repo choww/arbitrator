@@ -19,9 +19,8 @@ get '/' do
 end
 
 get '/category/:cat_name' do
-  if params[:cat_name] == current_user.id
-    # or @questions = current_user.questions
-    @questions = Question.where(user_id: current_user.id)
+  if params[:cat_name].to_i == current_user.id
+    @questions = current_user.questions
   else
     session[:category] = params[:cat_name]
     @questions = Question.where(category: params[:cat_name])
