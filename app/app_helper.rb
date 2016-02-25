@@ -8,7 +8,7 @@ helpers do
   end
 
   def curr_category
-    Question.where(category: session[:category]) || Question.all
+    Question.all || Question.where(category: session[:category])  
   end
 
   def format_time(time)
