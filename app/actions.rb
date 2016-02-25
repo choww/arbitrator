@@ -1,4 +1,8 @@
-# Homepage (Root path)
 get '/' do
-  erb :index
+  if logged_in?
+    'HI'
+  else
+    'none'
+  end
+# erb :index
 end
