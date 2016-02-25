@@ -1,4 +1,3 @@
-# enable :sessions [already in config/environment.rb]
 # For voting create conditional if vote.user_id && vote.question_id then crash
 before do 
   current_user if logged_in? 
@@ -32,6 +31,11 @@ get '/category/:cat_name' do
     @questions = curr_category
     #Question.where(category: params[:cat_name])
   end
+  redirect '/'
+end
+
+get '/login/:id' do
+  session[:id] = params[:id]
   redirect '/'
 end
 
