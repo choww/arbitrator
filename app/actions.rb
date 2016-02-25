@@ -19,8 +19,12 @@ get '/' do
 end
 
 get '/category/:cat_name' do
-  session[:category] = params[:cat_name]
-  @questions = Question.where(category: params[:cat_name])
+  if :cat_name == current_user.id
+    @questions = Question.where(user_id: current_user.id)
+  else
+    session[:category] = params[:cat_name]
+    @questions = Question.where(category: params[:cat_name])
+  end
   erb :index
 end
 
@@ -28,6 +32,7 @@ get '/questions/new' do
   @question = Question.new
   erb :'/questions/new'
 end
+
 
 post '/' do
   @question = @user.questions.new(

@@ -41,7 +41,7 @@
      </div>
     </nav>
   </div>
-<p><%= @user.username %></p>
+<a href = 'category/<%=current_user.id%>'><%= current_user.username %></a>
   <%= yield %>
 </body>
 </html>
