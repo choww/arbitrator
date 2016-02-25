@@ -22,11 +22,14 @@ get '/category/:cat_name' do
   if params[:cat_name] == current_user.id
     # or @questions = current_user.questions
     @questions = Question.where(user_id: current_user.id)
+  elsif params[:cat_name] == 'top'
+    @questions = popular_questions
   else
     session[:category] = params[:cat_name]
-    @questions = Question.where(category: params[:cat_name])
+    @questions = curr_category
+    #Question.where(category: params[:cat_name])
   end
-  erb :index
+  redirect '/'
 end
 
 get '/questions/new' do

@@ -8,7 +8,12 @@ helpers do
   end
 
   def curr_category
-    Question.all || Question.where(category: session[:category])  
+    filter = Question.where(category: session[:category])
+    filter.exists? ? filter :  Question.all 
+  end
+
+  def popular_questions
+    curr_category.order(votes: :desc)
   end
 
   def format_time(time)
