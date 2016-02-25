@@ -11,7 +11,7 @@ end
 ### THE REAL ROUTES ###
 
 before do
-  current_user if logged_in? 
+  current_user if logged_in?
 end
 
 get '/' do
@@ -25,7 +25,7 @@ get '/questions/new' do
 end
 
 post '/' do
-  @question = @current_user.questions.new(
+  @question = current_user.questions.new(
     category: params[:category],
     content: params[:content],
     time: params[:time_limit].to_i,
@@ -36,7 +36,7 @@ post '/' do
     redirect '/'
   else
     erb :'/questions/new'
-  end 
+  end
 end
 
 post 'questions/:qid/vote' do
@@ -53,18 +53,18 @@ end
 # #Gets                            #
 # ##################################
 
-# #Main page where questions is sorted by created_at by default, it can go into 
+# #Main page where questions is sorted by created_at by default, it can go into
 # #any category
-# get '/' do 
+# get '/' do
 #   @user = User.find(session["user"])
 #   #if session["category"] == nil
 #     #questions = Question.all #This may change based on the category
 #   # else
 #   #   questions = Question.where('category_id = #{session["user"]}')
-#   # end 
+#   # end
 #   #if category is set by session["category"] which set to the category_id in the questions table
 #   #
-#   #@questions = questions.order(created_at: :desc) 
+#   #@questions = questions.order(created_at: :desc)
 # #This orders it by created_at with the highest value at the top(most recent)
 #   erb :index
 # end

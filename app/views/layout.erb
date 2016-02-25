@@ -16,7 +16,7 @@
   <div class="navbar-fixed">
     <nav>
      <div class="nav-wrapper">
-       <a href="#" class="brand-logo center"><b><i>THE ARBITRATOR</i></b></a>
+       <a href="/" class="brand-logo center"><b><i>THE ARBITRATOR</i></b></a>
        <div id="nav-mobile" class="left">
          <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Catagories</a>
          <ul id='dropdown1' class='dropdown-content'>
@@ -34,8 +34,11 @@
          <li>
           <div class="chip">
             <img src="/images/max.jpg" alt="loggedin">
-            Max Lyons
+            <%= current_user.username %>
           </div>
+         </li>
+         <li>
+           <a class="submit-question waves-effect waves-light btn" href='/questions/new'>Create a Question</a>
          </li>
        </ul>
      </div>
