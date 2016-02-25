@@ -1,0 +1,34 @@
+<div class="new-question-1 container">
+  <div class="new-question z-depth-3">
+    <form  method="post" action="/" class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="title-name" type="text" name="title">
+          <label for="title-name">Title</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="option-a" type="text" name="option-a">
+          <label for="option-a">Option A</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="option-b" type="text" name="option-b">
+          <label for="option-b">Option B</label>
+        </div>
+        <div class="input-field col s12" name="time">
+          <select>
+            <option value="" disabled selected placeholder>Select One</option>
+            <option value="1">1 Minute</option>
+            <option value="2">2 Minutes</option>
+            <option value="5">5 Minutes</option>
+          </select>
+          <label>Question Length</label>
+        </div>
+      </div>
+      <div class="submit-question-div">
+        <button class="submit-question btn waves-effect waves-light" type="submit" value="Submit">Submit
+          <i class="material-icons right">add</i>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

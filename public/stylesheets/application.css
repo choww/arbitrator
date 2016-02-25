@@ -1,0 +1,133 @@
+body, html {
+  background-color: #95A5A6;
+}
+
+.nav-wrapper {
+  padding-right: 10px;
+  padding-left: 10px;
+  background-color: white;
+}
+
+.brand-logo b i {
+  color: #de4a3e;
+}
+
+.dropdown-button {
+  background-color: #de4a3e;
+}
+
+.dropdown-button:hover {
+  background-color: #c64236;
+}
+
+#dropdown1 li a {
+  background-color: #de4a3e;
+  color: white;
+}
+
+#dropdown1 li a:hover {
+  background-color: #c64236;
+}
+
+.container {
+  padding-top: 100px;
+}
+
+
+.title {
+  color: black;
+  margin: auto;
+  width: 300px;
+  background-color: white;
+  font-size: 25px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.question {
+  margin-top: 10px;
+  height: 150px;
+  background-color: white;
+  margin-bottom: 50px;
+}
+
+.left-button {
+  padding-left: 20px;
+  height: 100%;
+  padding-top: 50px;
+}
+
+.question-right {
+  padding-left: 5px;
+  padding-top: 30px;
+  text-align: left;
+  color: black;
+}
+
+.right-button {
+  text-align: right;
+  padding-right: 20px;
+  height: 100%;
+  padding-top: 50px;
+}
+
+.question-left {
+  padding-left: 5px;
+  padding-top: 30px;
+  text-align: left;
+  color: black;
+}
+
+.left-button {
+  text-align: left;
+  padding-right: 20px;
+  height: 100%;
+  padding-top: 50px;
+}
+
+.btn-floating {
+  background-color: #de4a3e;
+}
+
+.btn-floating:hover {
+  background-color: #c64236;
+}
+
+/*/New*/
+
+.container{
+  padding-top: 200px;
+}
+
+.new-question {
+  padding: 50px;
+  background-color: white;
+  margin:auto;
+  width: 800px;
+}
+
+.form {
+  color: black;
+}
+
+input[type=text]:focus:not([readonly]), input[type="password"]:focus:not([readonly]) {
+  border-bottom: 1px solid #de4a3e;
+  box-shadow: 0 1px 0 0 #de4a3e;
+}
+
+input[type=text]:focus:not([readonly])+label, input[type="password"]:focus:not([readonly])+label {
+  color: #de4a3e;
+}
+
+.submit-question-div {
+  text-align: center;
+}
+
+.submit-question {
+  background-color: #de4a3e;
+}
+
+.submit-question:hover {
+  background-color: #c64236;
+}
