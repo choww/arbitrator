@@ -1,5 +1,16 @@
-<h2>Sandbox</h2>h
+<h2>Sandbox</h2>
 
+<% @questions.each do |question| %>
+  <%= question.content %><br/> 
+  <form action="/questions/<%= question.id %>/vote" method="POST">
+    <button value="0" name="option"><%= question.option_a %></button>: 
+    <%= question.votes.where(value: 0).count %><br/>
+    <button value="1" name="option"><%= question.option_b %></button>: 
+    <%= question.votes.where(value: 1).count %><br/>
+    expire at: <%= format_time(Time.now + question.time.to_i.seconds) %>
+<% end %>
+
+<p>
 <form action="/test" method="POST">
   <label for="time_limit">Time Limit</label>
   <select name="time_limit">
@@ -10,6 +21,12 @@
     <option value="60">60</option>
   </select>
 
+  <!-- 
+  <select name="time_unit">
+    <option value="seconds">seconds</option>
+    <option value="minutes">minutes</option>
+  </select>
+  -->
   <input type="submit" value="Submit">
 </form>
 <!-- 

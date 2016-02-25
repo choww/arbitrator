@@ -1,6 +1,54 @@
 # enable :sessions [already in config/environment.rb]
 # For voting create conditional if vote.user_id && vote.question_id then crash
 
+### FOR TEST PAGE ###
+
+get '/test' do
+  @questions = Question.all
+  erb :test
+end
+
+### THE REAL ROUTES ###
+
+before do
+  current_user if logged_in? 
+end
+
+get '/' do
+  @questions = Question.all
+  erb :index
+end
+
+get '/questions/new' do
+  @question = Question.new
+  erb :'/questions/new'
+end
+
+post '/' do
+  @question = @current_user.questions.new(
+    category: params[:category],
+    content: params[:content],
+    time: params[:time_limit].to_i,
+    option_a: params[:option_a],
+    option_b: params[:option_b]
+  )
+  if @question.save
+    redirect '/'
+  else
+    erb :'/questions/new'
+  end 
+end
+
+post 'questions/:qid/vote' do
+  @vote = @current_user.votes.new(
+    value: params[:option].to_i,
+    question_id: params[:qid])
+  if @vote.save
+    redirect '/'
+  else
+    redirect '/'
+  end
+end
 # ##################################
 # #Gets                            #
 # ##################################
