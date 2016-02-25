@@ -1,5 +1,8 @@
-# enable :sessions
-# # For voting create conditional if vote.user_id && vote.question_id then crash
+<<<<<<< HEAD
+=======
+# enable :sessions [already in config/environment.rb]
+# For voting create conditional if vote.user_id && vote.question_id then crash
+>>>>>>> 91f9b37156c045f97818d70e21dee144ea2a1322
 
 # ##################################
 # #Gets                            #
@@ -69,6 +72,7 @@
 #   end
 # end
 
+<<<<<<< HEAD
 # post '/questions/:id' do
 # #For the vote information
 #   @question = Question.find(params[:id])
@@ -82,3 +86,18 @@
 #   if session["user"]
 #   redirect '/questions/:id'
 # end
+=======
+post '/questions/:id' do
+#For the vote information
+  @question = Question.find(params[:id])
+  @vote = Vote.new(
+    user_id: session["user"],
+    question_id: params[:id],
+    value: params[:value]
+    )
+  #if @question.user == session["user"]
+    do nothing
+  if session["user"]
+  redirect '/questions/:id'
+end
+>>>>>>> 91f9b37156c045f97818d70e21dee144ea2a1322
