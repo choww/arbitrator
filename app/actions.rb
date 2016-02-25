@@ -23,7 +23,7 @@ get '/' do
 end
 
 get '/category/:cat_name' do
-  if params[:cat_name].to_i == current_user.id
+  if params[:cat_name] == current_user.username
     @questions = current_user.questions
   elsif params[:cat_name] == 'top'
     @questions = popular_questions
@@ -52,10 +52,11 @@ end
 ##################################
 
 post '/' do
+  params[:time].to_i unless params[:time].nil?
   @question = current_user.questions.new(
     category: params[:category],
     content: params[:content],
-    time: params[:time_limit].to_i,
+    time: params[:time],
     option_a: params[:option_a],
     option_b: params[:option_b]
   )

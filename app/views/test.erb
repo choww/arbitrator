@@ -1,8 +1,8 @@
 <h2>Sandbox</h2>
 
 <% @questions.each do |question| %>
-  <% question.close_expired %>
   <%if question.expired?%>
+   <% question.close_expired %>
   <%= "Expired" %>
   <%end%>
   <%= question.content %><br/> 
