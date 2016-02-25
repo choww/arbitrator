@@ -1,0 +1,107 @@
+User Stories
+**Must be logged in to vote and create questions?
+
+-As a user
+  I want to ---
+  Because ---
+  Given that ---
+  When I ---
+  Then ---
+  
+############
+#User      #
+############
+-As a user
+  I want to view all the questions posted to the site
+  Because I want to see opinons
+  Given that I'm looking at two options for a subject
+  When I see those options I want to know the popular opinion
+  Then I can think about my next actions
+
+
+
+############
+#User-Voter#
+############
+-As a user
+  I want to voice my opinion on a question
+  Because I have a position
+  Given that I see the title and options
+  When I click a button
+  Then my input gets logged into the debate on one side or the other
+#Vote
+  -take user input and create a Vote object with the foreign based on the Question and User
+  -or Update an existing Vote based on the Vote.id
+
+-As a user
+  I want to voice my opinion on a question
+  Because I have a position
+  Given that I see the title and options
+  When I click a button
+  Then I can only choose one option
+
+-As a user
+  I can only vote once on a question
+
+
+#############
+#User-Poster#
+#############
+-As a user
+  I want to post a question
+  Because I'm indecisive between two options
+  Given that I'm on the page
+  When I click a button to create a post
+  Then I have a form to create a post
+#Create a question with the Question.user_id set and fulfilling the validations
+
+-As a user 
+  I can't vote for my own question
+#Conditional to make sure the session["user"] != question.user_id in the view
+  -If you made the post when you click on the button nothing happens
+ 
+-As a user
+  I want to get input on my question
+  Because I can't decide
+  Given that my question is posted
+  When I view my question 
+  Then the view should represent an untampered tally of opinion
+#Voters can only vote once
+
+-As a user
+  I want to be able to set a time limit to my question
+  Because I need a definitive answer within an amount of time
+  Given that I am logged in and on the create question screen
+  When I fill out the form
+  Then I can set how long I want my post to be active
+#When time limit expires, the post is resolved
+#If no votes when resolved display a message, or extending the time limit
+
+-As a user
+  I want to be able to delete my question
+  Because I made an error or don't care for it
+  Given that I am logged in can view the questions I created
+  When I press a button
+  Then that question is deleted
+#If a question is deleted it is deleted from the database
+
+
+-As a user
+  I want to be able to see all the questions I have created
+  Because I need to see the feedback 
+  Given that I am logged in and on the  my questions screen
+  When I look at the screen
+  Then I can see which questions are active/inactive
+#Users can see resolved/unresolved questions
+
+
+##############
+#Categories
+##############
+
+Politics 
+Food
+Or Hitler
+Sports
+Science/Technology
+Pop Culture
