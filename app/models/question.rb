@@ -26,8 +26,9 @@ class Question < ActiveRecord::Base
     end
   end
 
-
-
+  def vote_count(answer)
+    votes.where(value: answer).count
+  end
 end
 
 
