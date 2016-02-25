@@ -7,7 +7,7 @@ helpers do
     @current_user = User.find(session[:user_id])
   end
 
-  def category
+  def curr_category
     session[:category] || 'newest'
   end
 
