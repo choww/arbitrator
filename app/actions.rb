@@ -14,7 +14,7 @@ end
 ### THE REAL ROUTES ###
 
 get '/' do
-  @questions = Question.where(category: curr_category).order(created_at: :desc)
+  @questions = curr_category.order(created_at: :desc)
   erb :index
 end
 
@@ -30,7 +30,7 @@ get '/questions/new' do
 end
 
 post '/' do
-  @question = @user.questions.new(
+  @question = current_user.questions.new(
     category: params[:category],
     content: params[:content],
     time: params[:time_limit].to_i,
@@ -45,7 +45,7 @@ post '/' do
 end
 
 post 'questions/:qid/vote' do
-  @vote = @user.votes.new(
+  @vote = current_user.votes.new(
     value: params[:option].to_i,
     question_id: params[:qid])
   if @vote.save
