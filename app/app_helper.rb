@@ -6,4 +6,13 @@ helpers do
   def current_user
     User.find(session[:user_id])
   end
+
+  def category
+    session[:category] || 'newest'
+  end
+
+  def check_flash
+    @flash = session[:flash] if session[:flash]
+    session[:flash] = nil
+  end
 end

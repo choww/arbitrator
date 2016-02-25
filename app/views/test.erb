@@ -1,0 +1,45 @@
+<h2>Sandbox</h2>h
+
+<form action="/test" method="POST">
+  <label for="time_limit">Time Limit</label>
+  <select name="time_limit">
+    <option value="1">1</option>
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="30">30</option>
+    <option value="60">60</option>
+  </select>
+
+  <input type="submit" value="Submit">
+</form>
+<!-- 
+in actions.rb:
+  limit =  params[:time_limit].to_i
+  expire = question.created_at + limit.seconds   
+
+  # if we want to let users choose secs/mins/hrs:
+  # would create another dropdown to select time unit
+  limit = params[:time_limit].to_i
+  unit = params[:time_unit].intern 
+
+  expire = question.created_at + limit.send(unit)
+
+VOTE FEATURE
+check type of vote selected:
+def find_vote(question)
+  @user.votes.where(value: <0 or 1>, question_id: question.id).first
+end
+
+check user voted [i think it's nil if can't find it?? not sure]
+def voted?
+  @user.votes.find_by(question_id: question.id).nil?
+end
+
+change user vote
+if voted?
+  find user vote
+  update user vote value
+else
+  Vote.new
+end    
+-->

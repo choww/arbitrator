@@ -21,6 +21,27 @@
 #   erb :index
 # end
 
+#CREATE Question page
+get '/questions/new' do
+  #Question.new(
+  #
+  #)
+#This is taking the form information and making a new question object
+  #erb :
+end
+
+#Question dedtails
+get '/questions/:id/show' do
+  #@question = Question.find params[:id]
+  #erb :
+end
+
+
+
+#User Dashboard
+get '/users/:id' do
+  #erb :
+end
 # #CREATE Question page
 # get '/questions/new' do
 #   #Question.new(
@@ -69,16 +90,18 @@
 #   end
 # end
 
-# post '/questions/:id' do
-# #For the vote information
-#   @question = Question.find(params[:id])
-#   @vote = Vote.new(
-#     user_id: session["user"],
-#     question_id: params[:id],
-#     value: params[:value]
-#     )
-#   #if @question.user == session["user"]
-#     do nothing
-#   if session["user"]
-#   redirect '/questions/:id'
-# end
+<<<<<<< HEAD
+post '/questions/:id' do
+#For the vote information
+  @question = Question.find(params[:id])
+  @vote = Vote.new(
+    user_id: session["user"],
+    question_id: params[:id],
+    value: params[:value]
+    )
+  #if @question.user == session["user"]
+   # do nothing
+  #if session["user"]
+  redirect '/questions/:id'
+end
+>>>>>>> 1482ae13fda218a3a16448fec921177fbef36dbd
