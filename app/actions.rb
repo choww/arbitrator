@@ -27,20 +27,20 @@ get '/questions/new' do
   #
   #)
 #This is taking the form information and making a new question object
-  erb :
+  #erb :
 end
 
 #Question dedtails
 get '/questions/:id/show' do
   #@question = Question.find params[:id]
-  erb :
+  #erb :
 end
 
 
 
 #User Dashboard
 get '/users/:id' do
-  erb :
+  #erb :
 end
 
 ##########
@@ -78,7 +78,7 @@ post '/questions/:id' do
     value: params[:value]
     )
   #if @question.user == session["user"]
-    do nothing
-  if session["user"]
+   # do nothing
+  #if session["user"]
   redirect '/questions/:id'
 end
