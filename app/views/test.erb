@@ -1,13 +1,17 @@
 <h2>Sandbox</h2>
 
 <% @questions.each do |question| %>
+  <% question.close_expired %>
+  <%if question.expired?%>
+  <%= "Expired" %>
+  <%end%>
   <%= question.content %><br/> 
   <form action="/questions/<%= question.id %>/vote" method="POST">
     <button value="0" name="option"><%= question.option_a %></button>: 
     <%= question.votes.where(value: 0).count %><br/>
     <button value="1" name="option"><%= question.option_b %></button>: 
     <%= question.votes.where(value: 1).count %><br/>
-    expire at: <%= format_time(expire_time(question)) %>
+    expire at: <%= format_time(question.expire_time) %>
     <hr>
 <% end %>
 

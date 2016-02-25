@@ -8,11 +8,27 @@ class Question < ActiveRecord::Base
   validates :option_b, presence: true, length: {maximum: 280} 
 
   def expire_time
-    Time.now + time.seconds
+    if time.nil?
+      Time.now + 20.years
+    else
+      self.created_at + time.seconds 
+    end
   end
 
   def expired?
-    expire_time >= Time.now 
+    expire_time <= Time.now 
   end  
+
+  def close_expired
+    if expired?
+      self.resolved = true
+      self.save
+    end
+  end
+
+
+
 end
+
+
 
