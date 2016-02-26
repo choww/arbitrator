@@ -55,6 +55,12 @@ get '/questions/:qid/edit' do
   erb :'questions/edit'
 end
 
+get '/questions/:qid/delete' do 
+   question = Question.find(params[:qid])
+   question.destroy
+   redirect :'/'
+ end
+
 # ##########
 # #STRETCH?#
 # ##########
