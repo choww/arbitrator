@@ -17,11 +17,7 @@ end
 ##################################
 
 get '/' do
-  if session[:category] == 'top'
-    @questions = popular_questions
-  else
-    @questions = curr_category.order(created_at: :desc)
-  end
+  @questions = curr_category.order(created_at: :desc)
   erb :index
 end
 
@@ -34,7 +30,6 @@ get '/category/:cat_name' do
   else
     session[:category] = params[:cat_name]
     @questions = curr_category.order(created_at: :desc)
-    #Question.where(category: params[:cat_name])
   end
   erb :'index'
 end
@@ -76,8 +71,6 @@ post '/' do
     category: params[:category],
     content: params[:content],
     time: params[:time].to_i,
-    #custom validate if selected time must also select unit
-    #time_unit: params[:time_unit].intern
     option_a: params[:option_a],
     option_b: params[:option_b]
   )

@@ -3,10 +3,6 @@ helpers do
     !session[:user_id].nil?
   end
 
-  #def guest_user
-  #  current
-  #end
-
   def current_user
    # uid = logged_in? ? 
     @user = User.find(session[:id]) 
