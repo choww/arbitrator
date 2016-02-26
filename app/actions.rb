@@ -1,6 +1,6 @@
 # For voting create conditional if vote.user_id && vote.question_id then crash
-before do 
-  current_user if logged_in? 
+before do
+  current_user if logged_in?
 end
 ### FOR TEST PAGE ###
 
@@ -19,6 +19,12 @@ end
 get '/' do
   @questions = curr_category.order(created_at: :desc)
   erb :index
+end
+
+get '/time' do
+  content_type :json
+  question = Question.first
+  format_time(question.expire_time).to_json
 end
 
 get '/category/:cat_name' do
@@ -50,7 +56,7 @@ get '/questions/new' do
   erb :'/questions/new'
 end
 
-get '/questions/:qid/edit' do 
+get '/questions/:qid/edit' do
   @question = current_user.questions.find(params[:qid])
   erb :'questions/edit'
 end
@@ -78,7 +84,7 @@ post '/' do
     redirect '/'
   else
     erb :'/questions/new'
-  end 
+  end
 end
 
 post '/questions/:qid/vote' do
