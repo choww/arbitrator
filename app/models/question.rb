@@ -11,7 +11,7 @@ class Question < ActiveRecord::Base
     if time.nil?
       Time.now + 20.years
     else
-      self.created_at + time.seconds 
+      created_at + time.seconds 
     end
   end
 
