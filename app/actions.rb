@@ -82,18 +82,17 @@ post '/' do
 end
 
 post '/questions/:qid/vote' do
-  q_id = params[:qid]
-  if current_user.id == Question.find(q_id).user_id
+  if current_user.id == Question.find(params[:qid].to_i).user_id
     @flash = "Fail"
   else
-  @vote = current_user.votes.new(
-    value: params[:option].to_i,
-    question_id: q_id)
+    @vote = current_user.votes.new(
+      value: params[:option].to_i,
+      question_id: params[:qid].to_i)
   end
   if @vote && @vote.save
-    redirect '/'
+    redirect '/test'
   else
-    redirect '/'
+    redirect '/test'
   end
 end
 
