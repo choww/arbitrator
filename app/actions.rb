@@ -22,9 +22,7 @@ get '/' do
 end
 
 get '/category/:cat_name' do
-  if params[:cat_name] == current_user.username
-    @questions = current_user.questions
-  elsif params[:cat_name] == 'top'
+  if params[:cat_name] == 'top'
     session[:category] = 'top'
     @questions = popular_questions
   else
@@ -34,10 +32,11 @@ get '/category/:cat_name' do
   erb :'index'
 end
 
-get '/:username' do
+
+get '/:username' do # This is the view for questions grouped by users
   @user = User.find_by(username: params[:username])
   @questions = @user.questions
-  erb :'users/show'
+  erb :'index' #This needs to be changed when users view is ready
 end
 
 get '/login/:id' do
@@ -53,6 +52,12 @@ end
 get '/questions/:qid/edit' do 
   @question = current_user.questions.find(params[:qid])
   erb :'questions/edit'
+end
+
+get '/questions/:qid/delete' do 
+  question = Question.find(params[:qid])
+  question.destroy
+  redirect :'/'
 end
 
 # ##########
@@ -105,7 +110,7 @@ post '/questions/:qid/edit' do
   @question = current_user.questions.find(params[:qid])
   @question.time = params[:time].to_i
   if @question.save
-    redirect "/category/#{current_user.username}"
+    redirect "/current_user.username"
   else
     erb :'questions/edit'
   end
