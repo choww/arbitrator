@@ -13,18 +13,12 @@ helpers do
   end
 
   def popular_questions
-    # a = Question.all
-    # a.find_by_sql('SELECT questions.*, count(votes.id) AS total_votes 
-    #   FROM questions 
-    #   JOIN votes ON questions.id = votes.question_id 
-    #   GROUP BY questions.id ORDER BY total_votes DESC;')
-    # a.order(:total_votes)
     Question.all.sort {|q1, q2| q1.votes.count <=> q2.votes.count}.reverse
   end
 
   def format_time(time)
-    (Time.now - time)/60
-    #time.strftime("%Y %m %d @ %H: %M: %S")
+    local_time = time.getlocal
+    (Time.now - local_time).abs / 60
   end
  
   def check_flash
