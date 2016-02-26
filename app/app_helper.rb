@@ -3,13 +3,13 @@ helpers do
     !session[:user_id].nil?
   end
 
-  #def guest_user
-  #  current
-  #end
-
   def current_user
    # uid = logged_in? ? 
     @user = User.find(session[:id]) 
+  end
+
+  def created?(question)
+    current_user == question.user 
   end
 
   def curr_category
@@ -26,8 +26,4 @@ helpers do
     (Time.now - local_time).abs / 60
   end
  
-  def check_flash
-    @flash = session[:flash] if session[:flash]
-    session[:flash] = nil
-  end
 end

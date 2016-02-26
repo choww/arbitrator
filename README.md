@@ -1,7 +1,5 @@
-Sinatra
+Arbitrator App
 =============
-
-Brought to you by Lighthouse Labs
 
 ## Getting Started
 

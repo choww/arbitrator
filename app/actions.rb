@@ -17,31 +17,26 @@ end
 ##################################
 
 get '/' do
-  if session[:category] == 'top'
-    @questions = popular_questions
-  else
-    @questions = curr_category.order(created_at: :desc)
-  end
+  @questions = curr_category.order(created_at: :desc)
   erb :index
 end
 
 get '/category/:cat_name' do
-  if params[:cat_name] == current_user.username
-    @questions = current_user.questions
-  elsif params[:cat_name] == 'top'
+  if params[:cat_name] == 'top'
     session[:category] = 'top'
     @questions = popular_questions
   else
     session[:category] = params[:cat_name]
     @questions = curr_category.order(created_at: :desc)
-    #Question.where(category: params[:cat_name])
   end
-  erb :'index'
+  erb :index
 end
 
 get '/:username' do
   @user = User.find_by(username: params[:username])
-  @questions = @user.questions
+  @live_questions = @user.questions.where(resolved: false).order(created_at: :desc)
+  @expired_questions = @user.questions.where(resolved: true).order(created_at: :desc)
+  @tagged_questions = Question.where(tagged_user: @user.username).order(created_at: :desc)
   erb :'users/show'
 end
 
@@ -72,15 +67,7 @@ end
 
 post '/' do
   params[:time].to_i unless params[:time].nil?
-  @question = current_user.questions.new(
-    category: params[:category],
-    content: params[:content],
-    time: params[:time].to_i,
-    #custom validate if selected time must also select unit
-    #time_unit: params[:time_unit].intern
-    option_a: params[:option_a],
-    option_b: params[:option_b]
-  )
+  @question = current_user.questions.new(params[:question])
 
   if @question.save
     redirect '/'
@@ -90,15 +77,13 @@ post '/' do
 end
 
 post '/questions/:qid/vote' do
-  if current_user == Question.find(params[:qid].to_i).user
-    @flash = "Fail"
+  @question = Question.find(params[:qid].to_i)
+  if created?(@question) || current_user.username == @question.tagged_user
+    @flash = "Can't vote on your own questions or questions you're tagged in!"
+    redirect '/'
   else
     @vote = current_user.add_or_update_vote(params[:qid].to_i, params[:option].to_i)
-    if @vote.save
-      redirect '/'
-    else
-      redirect '/'
-    end
+    @vote.save ? redirect('/') : redirect('/')
   end
 end
 
@@ -110,9 +95,12 @@ end
 
 post '/questions/:qid/edit' do
   @question = current_user.questions.find(params[:qid])
-  @question.time = params[:time].to_i
+  @question.attributes = {
+    time: params[:time].to_i,
+    resolved: false
+  }
   if @question.save
-    redirect "/category/#{current_user.username}"
+    redirect "/#{current_user.username}"
   else
     erb :'questions/edit'
   end

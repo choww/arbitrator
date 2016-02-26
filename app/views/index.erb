@@ -9,6 +9,9 @@
       <div class="col s4">
         <div class="title z-depth-3">
           <%=question.content%>
+          <%if current_user.id == question.user_id%>
+          <a id="delete" href="/questions/<%=question.id%>/delete"><i class="material-icons">delete_forever</i></a>
+          <%end%>
         </div>
       </div>
       <div class="col s4">
