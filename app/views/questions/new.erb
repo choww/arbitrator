@@ -1,17 +1,23 @@
+<% if @question.errors.any? %>
+  <% @question.errors.full_messages.each do |msg| %>
+    <%= msg %>
+  <% end %>
+<% end %>
+
 <div class="new-question-1 container">
   <div class="new-question z-depth-3">
     <form  method="post" action="/" class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <input id="content" type="text" name="question[content]">
+          <input id="content" type="text" name="question[content]" value="<%= @question.content %>">
           <label for="content">Title</label>
         </div>
         <div class="input-field col s6">
-          <input id="option_a" type="text" name="question[option_a]">
+          <input id="option_a" type="text" name="question[option_a]" value="<%= @question.option_a %>">
           <label for="option_a">Option A</label>
         </div>
         <div class="input-field col s6">
-          <input id="option_b" type="text" name="question[option_b]">
+          <input id="option_b" type="text" name="question[option_b]" value="<%= @question.option_b %>">
           <label for="option_b">Option B</label>
         </div>
         <div class="testy input-field col s12" name="category">
@@ -27,10 +33,11 @@
           <label>Category</label>
         </div>
         <div class="input-field col s12" name="time">
-          <select name="question[time]">
-            <option value="1">1 Minute</option>
-            <option value="2">2 Minutes</option>
-            <option value="5">5 Minutes</option>
+          <select name="time">
+            <option value="" disabled selected placeholder>Select One</option>
+            <option value="60">1 Minute</option>
+            <option value="120">2 Minutes</option>
+            <option value="300">5 Minutes</option>
           </select>
           <label>Question Length</label>
         </div>

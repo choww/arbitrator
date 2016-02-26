@@ -8,6 +8,10 @@ helpers do
     @user = User.find(session[:id]) 
   end
 
+  def created?(question)
+    current_user == question.user 
+  end
+
   def curr_category
     filter = Question.where(category: session[:category])
     filter.exists? ? filter :  Question.all 
@@ -22,8 +26,4 @@ helpers do
     (Time.now - local_time).abs / 60
   end
  
-  def check_flash
-    @flash = session[:flash] if session[:flash]
-    session[:flash] = nil
-  end
 end
