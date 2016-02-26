@@ -10,7 +10,7 @@
         <div class="title z-depth-3">
           <%=question.content%>
           <%if current_user.id == question.user_id%>
-          <a class="btn-floating btn-large waves-effect waves-light" href="/questions/<%=question.id%>/delete"><i class="check material-icons">done</i></a>
+          <a id="delete" href="/questions/<%=question.id%>/delete"><i class="material-icons">delete_forever</i></a>
           <%end%>
         </div>
       </div>

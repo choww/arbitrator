@@ -31,10 +31,9 @@
          </ul>
        </div>
        <ul id="nav-mobile" class="right">
-         <li >
+         <li>
           <div class="chip">
-            <img src="/images/max.jpg" alt="loggedin">
-            <%= current_user.username %>
+          <a id ="nametag"href="/<%=current_user.username%>"><%=current_user.username%></a>
           </div>
          </li>
          <li>
