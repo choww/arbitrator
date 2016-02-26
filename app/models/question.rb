@@ -9,9 +9,8 @@ class Question < ActiveRecord::Base
   validates :option_b, presence: true, length: {maximum: 280} 
 
   validate :tagged_user_is_registered
-
   def expire_time
-    created_at + time.seconds if time
+    updated_at + time.minutes if time
   end
 
   def expired?
@@ -19,8 +18,7 @@ class Question < ActiveRecord::Base
   end  
 
   def close_expired
-      self.resolved = true
-      self.save
+      self.update(resolved: true)
   end
 
   def vote_count(answer)

@@ -34,9 +34,9 @@ end
 
 get '/:username' do
   @user = User.find_by(username: params[:username])
-  @live_questions = @user.questions.where(resolved: false)
-  @expired_questions = @user.questions.where(resolved: true)
-  @tagged_questions = Question.where(tagged_user: @user.username)
+  @live_questions = @user.questions.where(resolved: false).order(created_at: :desc)
+  @expired_questions = @user.questions.where(resolved: true).order(created_at: :desc)
+  @tagged_questions = Question.where(tagged_user: @user.username).order(created_at: :desc)
   erb :'users/show'
 end
 
@@ -78,7 +78,7 @@ end
 
 post '/questions/:qid/vote' do
   @question = Question.find(params[:qid].to_i)
-  if current_user == @question.user || current_user.username == @question.tagged_user
+  if created?(@question) || current_user.username == @question.tagged_user
     @flash = "Can't vote on your own questions or questions you're tagged in!"
     redirect '/'
   else
@@ -95,9 +95,12 @@ end
 
 post '/questions/:qid/edit' do
   @question = current_user.questions.find(params[:qid])
-  @question.time = params[:time].to_i
+  @question.attributes = {
+    time: params[:time].to_i,
+    resolved: false
+  }
   if @question.save
-    redirect "/category/#{current_user.username}"
+    redirect "/#{current_user.username}"
   else
     erb :'questions/edit'
   end

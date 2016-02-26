@@ -1,17 +1,23 @@
+<% if @question.errors.any? %>
+  <% @question.errors.full_messages.each do |msg| %>
+    <%= msg %>
+  <% end %>
+<% end %>
+
 <div class="new-question-1 container">
   <div class="new-question z-depth-3">
     <form  method="post" action="/" class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <input id="content" type="text" name="question[content]">
+          <input id="content" type="text" name="question[content]" value="<%= @question.content %>">
           <label for="content">Title</label>
         </div>
         <div class="input-field col s6">
-          <input id="option_a" type="text" name="question[option_a]">
+          <input id="option_a" type="text" name="question[option_a]" value="<%= @question.option_a %>">
           <label for="option_a">Option A</label>
         </div>
         <div class="input-field col s6">
-          <input id="option_b" type="text" name="question[option_b]">
+          <input id="option_b" type="text" name="question[option_b]" value="<%= @question.option_b %>">
           <label for="option_b">Option B</label>
         </div>
         <div class="testy input-field col s12" name="category">
