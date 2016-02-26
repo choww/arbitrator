@@ -11,7 +11,7 @@ class Question < ActiveRecord::Base
   validate :tagged_user_is_registered
 
   def expire_time
-    created_at + time.seconds if time
+    created_at + time.minutes if time
   end
 
   def expired?
