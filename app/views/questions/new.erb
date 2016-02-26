@@ -1,16 +1,24 @@
-<% if @question.errors.any? %>
-  <% @question.errors.full_messages.each do |msg| %>
-    <%= msg %>
-  <% end %>
-<% end %>
-
 <div class="new-question-1 container">
   <div class="new-question z-depth-3">
+
+    <% if @question.errors.any? %>
+      <strong><%= @question.errors.count %> errors found</strong>
+      <ul>
+      <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    <% end %>
+
     <form  method="post" action="/" class="col s12">
       <div class="row">
         <div class="input-field col s12">
           <input id="content" type="text" name="question[content]" value="<%= @question.content %>">
           <label for="content">Title</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="content" type="text" name="question[tagged_user]" value="<%= @question.tagged_user %>">
+          <label for="content">Tag a user for this question?</label>
         </div>
         <div class="input-field col s6">
           <input id="option_a" type="text" name="question[option_a]" value="<%= @question.option_a %>">
