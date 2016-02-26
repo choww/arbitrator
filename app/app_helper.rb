@@ -13,7 +13,9 @@ helpers do
   end
 
   def popular_questions
-    curr_category.order(votes: :desc)
+    Question.all.sort do |q1, q2|
+      q2.votes.count <=> q1.votes.count
+    end
   end
 
   def format_time(time)

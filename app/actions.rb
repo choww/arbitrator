@@ -31,7 +31,7 @@ get '/category/:cat_name' do
     @questions = curr_category
     #Question.where(category: params[:cat_name])
   end
-  redirect '/'
+  erb :index
 end
 
 get '/:username' do
