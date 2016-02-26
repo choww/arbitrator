@@ -29,7 +29,7 @@ get '/category/:cat_name' do
     session[:category] = params[:cat_name]
     @questions = curr_category.order(created_at: :desc)
   end
-  erb :'index'
+  erb :index
 end
 
 
@@ -72,13 +72,7 @@ end
 
 post '/' do
   params[:time].to_i unless params[:time].nil?
-  @question = current_user.questions.new(
-    category: params[:category],
-    content: params[:content],
-    time: params[:time].to_i,
-    option_a: params[:option_a],
-    option_b: params[:option_b]
-  )
+  @question = current_user.questions.new(params[:question])
 
   if @question.save
     redirect '/'
@@ -88,15 +82,13 @@ post '/' do
 end
 
 post '/questions/:qid/vote' do
-  if current_user == Question.find(params[:qid].to_i).user
-    @flash = "Fail"
+  @question = Question.find(params[:qid].to_i)
+  if current_user == @question.user || current_user.username == @question.tagged_user
+    @flash = "Can't vote on your own questions or questions you're tagged in!"
+    redirect '/'
   else
     @vote = current_user.add_or_update_vote(params[:qid].to_i, params[:option].to_i)
-    if @vote.save
-      redirect '/'
-    else
-      redirect '/'
-    end
+    @vote.save ? redirect('/') : redirect('/')
   end
 end
 
