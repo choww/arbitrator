@@ -5,7 +5,7 @@ class AddQuestions < ActiveRecord::Migration
       t.string :category
       t.string :content
       t.timestamps
-      t.integer :time
+      t.integer :time, default: 450
       t.boolean :resolved, default: false
       t.string :option_a
       t.string :option_b
