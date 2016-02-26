@@ -28,10 +28,10 @@ get '/category/:cat_name' do
     @questions = popular_questions
   else
     session[:category] = params[:cat_name]
-    @questions = curr_category
+    @questions = curr_category.order(created_at: :desc)
     #Question.where(category: params[:cat_name])
   end
-  redirect '/'
+  erb :'index'
 end
 
 get '/:username' do
