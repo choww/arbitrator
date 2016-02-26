@@ -1,6 +1,6 @@
 # For voting create conditional if vote.user_id && vote.question_id then crash
-before do 
-  current_user if logged_in? 
+before do
+  current_user if logged_in?
 end
 ### FOR TEST PAGE ###
 
@@ -55,7 +55,7 @@ get '/questions/new' do
   erb :'/questions/new'
 end
 
-get '/questions/:qid/edit' do 
+get '/questions/:qid/edit' do
   @question = current_user.questions.find(params[:qid])
   erb :'questions/edit'
 end
@@ -86,7 +86,7 @@ post '/' do
     redirect '/'
   else
     erb :'/questions/new'
-  end 
+  end
 end
 
 post '/questions/:qid/vote' do
