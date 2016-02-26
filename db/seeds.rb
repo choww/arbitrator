@@ -5,7 +5,7 @@
 ############
 user_a = User.create(username: "CrashOverride", email: "jlm@elementary.com", password: "angie")
 user_b = User.create(username: "ZeroCool", email: "jlm@trainspotting.com", password: "sickboy")
-# user_c = User.create(username: "CerealKiller", email: "ml@scoobysnacks.com", password: "scream")
+user_c = User.create(username: "CerealKiller", email: "ml@scoobysnacks.com", password: "scream")
 # user_d = User.create(username: "AcidBurn", email: "lara@tombs.com", password: "brad")
 # user_e = User.create(username: "LordNikon", email: "sammy@prisonbreak.com", password: "sammy")
 # user_f = User.create(username: "PhantomPhreak", email: "sallycantdance@conair.com", password: "ramon")
