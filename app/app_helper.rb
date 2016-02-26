@@ -3,7 +3,12 @@ helpers do
     !session[:user_id].nil?
   end
 
+  #def guest_user
+  #  current
+  #end
+
   def current_user
+   # uid = logged_in? ? 
     @user = User.find(session[:id]) 
   end
 
@@ -13,7 +18,7 @@ helpers do
   end
 
   def popular_questions
-    Question.all.sort {|q1, q2| q1.votes.count <=> q2.votes.count}.reverse
+    Question.all.sort {|q1, q2| q2.votes.count <=> q1.votes.count}
   end
 
   def format_time(time)

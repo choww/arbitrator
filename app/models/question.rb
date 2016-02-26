@@ -9,6 +9,7 @@ class Question < ActiveRecord::Base
   validates :option_b, presence: true, length: {maximum: 280} 
 
   def expire_time
+    # created_at + time.send(time_unit) if time && time_unit
     created_at + time.seconds if time
   end
 

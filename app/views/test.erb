@@ -12,7 +12,8 @@
     <%= question.votes.where(value: 0).count %><br/>
     <button value="1" name="option"><%= question.option_b %></button>: 
     <%= question.votes.where(value: 1).count %><br/>
-    </form>
+  </form>
+
     <% unless question.time.nil? %>
       <% if question.expired? %>
         <% if question.votes.empty? %>
@@ -37,12 +38,10 @@
     <option value="60">60</option>
   </select>
 
-  <!-- 
   <select name="time_unit">
     <option value="seconds">seconds</option>
     <option value="minutes">minutes</option>
   </select>
-  -->
   <input type="submit" value="Submit">
 </form>
 <!-- 
