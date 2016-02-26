@@ -90,9 +90,9 @@ post '/questions/:qid/vote' do
       question_id: params[:qid].to_i)
   end
   if @vote && @vote.save
-    redirect '/test'
+    redirect '/'
   else
-    redirect '/test'
+    redirect '/'
   end
 end
 
