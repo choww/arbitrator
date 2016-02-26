@@ -17,7 +17,11 @@ end
 ##################################
 
 get '/' do
-  @questions = curr_category.order(created_at: :desc)
+  if session[:category] == 'top'
+    @questions = popular_questions
+  else
+    @questions = curr_category.order(created_at: :desc)
+  end
   erb :index
 end
 
@@ -25,6 +29,7 @@ get '/category/:cat_name' do
   if params[:cat_name] == current_user.username
     @questions = current_user.questions
   elsif params[:cat_name] == 'top'
+    session[:category] = 'top'
     @questions = popular_questions
   else
     session[:category] = params[:cat_name]
@@ -70,10 +75,13 @@ post '/' do
   @question = current_user.questions.new(
     category: params[:category],
     content: params[:content],
-    time: params[:time],
+    time: params[:time].to_i,
+    #custom validate if selected time must also select unit
+    #time_unit: params[:time_unit].intern
     option_a: params[:option_a],
     option_b: params[:option_b]
   )
+
   if @question.save
     redirect '/'
   else
@@ -95,10 +103,10 @@ post '/questions/:qid/vote' do
 end
 
 # EVERYTHING BELOW NEEDS TO BE TESTED
-post '/questions/:id/extend_time' do
+#post '/questions/:id/extend_time' do
 #  if params[:answer] == 'yes'
 #
-end
+#end
 
 post '/questions/:qid/edit' do
   @question = current_user.questions.find(params[:qid])
