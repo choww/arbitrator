@@ -17,8 +17,8 @@ helpers do
   end
 
   def format_time(time)
-    (Time.now - time)/60
-    #time.strftime("%Y %m %d @ %H: %M: %S")
+    local_time = time.getlocal
+    (Time.now - local_time).abs / 60
   end
  
   def check_flash

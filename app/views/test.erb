@@ -11,7 +11,17 @@
     <%= question.votes.where(value: 0).count %><br/>
     <button value="1" name="option"><%= question.option_b %></button>: 
     <%= question.votes.where(value: 1).count %><br/>
-    expire at: <%= format_time(question.expire_time) %>
+
+    <% unless question.time.nil? %>
+      <% if question.expired? %>
+        <% if question.votes.empty? %>
+          Extend time limit? <br/>
+        <% end %>
+        expired <%= format_time(question.expire_time) %> minutes ago
+      <% else %>
+      expires in <%= format_time(question.expire_time) %> minutes
+      <% end %>
+    <% end %>
     <hr>
 <% end %>
 

@@ -22,6 +22,7 @@ configure do
 
   set :views, File.join(Sinatra::Application.root, "app", "views")
   end
+
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
 
