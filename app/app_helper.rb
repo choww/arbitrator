@@ -13,9 +13,7 @@ helpers do
   end
 
   def popular_questions
-    Question.all.sort do |q1, q2|
-      q2.votes.count <=> q1.votes.count
-    end
+    Question.all.sort {|q1, q2| q1.votes.count <=> q2.votes.count}.reverse
   end
 
   def format_time(time)

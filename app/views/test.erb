@@ -5,6 +5,7 @@
    <% question.close_expired %>
   <%= "Expired" %>
   <%end%>
+   <%= question.user_id %><br/> 
   <%= question.content %><br/> 
   <form action="/questions/<%= question.id %>/vote" method="POST">
     <button value="0" name="option"><%= question.option_a %></button>: 
@@ -18,9 +19,9 @@
         <% if question.votes.empty? %>
           Extend time limit? <br/>
         <% end %>
-        expired <%= format_time(question.expire_time) %> minutes ago
+        expired <%= format_time(question.expire_time).round %> minutes ago
       <% else %>
-      expires in <%= format_time(question.expire_time) %> minutes
+      expires in <%= format_time(question.expire_time).round %> minutes
       <% end %>
     <% end %>
     <hr>

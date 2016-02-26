@@ -28,10 +28,10 @@ get '/category/:cat_name' do
     @questions = popular_questions
   else
     session[:category] = params[:cat_name]
-    @questions = curr_category
+    @questions = curr_category.order(created_at: :desc)
     #Question.where(category: params[:cat_name])
   end
-  erb :index
+  erb :'index'
 end
 
 get '/:username' do
@@ -82,11 +82,15 @@ post '/' do
 end
 
 post '/questions/:qid/vote' do
-  @vote = current_user.add_or_update_vote(params[:qid].to_i, params[:option].to_i)
-  if @vote.save
-    redirect '/'
+  if current_user == Question.find(params[:qid].to_i).user
+    @flash = "Fail"
   else
-    redirect '/'
+    @vote = current_user.add_or_update_vote(params[:qid].to_i, params[:option].to_i)
+    if @vote.save
+      redirect '/'
+    else
+      redirect '/'
+    end
   end
 end
 
