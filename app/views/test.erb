@@ -6,6 +6,7 @@
   <%= "Expired" %>
   <%end%>
    <%= question.user_id %><br/> 
+  tagged <%= question.tagged_user if question.tagged_user %> 
   <%= question.content %><br/> 
   <form action="/questions/<%= question.id %>/vote" method="POST">
     <button value="0" name="option"><%= question.option_a %></button>: 

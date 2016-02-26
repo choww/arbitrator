@@ -32,11 +32,12 @@ get '/category/:cat_name' do
   erb :index
 end
 
-
-get '/:username' do # This is the view for questions grouped by users
+get '/:username' do
   @user = User.find_by(username: params[:username])
-  @questions = @user.questions
-  erb :'index' #This needs to be changed when users view is ready
+  @live_questions = @user.questions.where(resolved: false)
+  @expired_questions = @user.questions.where(resolved: true)
+  @tagged_questions = Question.where(tagged_user: @user.username)
+  erb :'users/show'
 end
 
 get '/login/:id' do
@@ -52,12 +53,6 @@ end
 get '/questions/:qid/edit' do 
   @question = current_user.questions.find(params[:qid])
   erb :'questions/edit'
-end
-
-get '/questions/:qid/delete' do 
-  question = Question.find(params[:qid])
-  question.destroy
-  redirect :'/'
 end
 
 # ##########
@@ -102,7 +97,7 @@ post '/questions/:qid/edit' do
   @question = current_user.questions.find(params[:qid])
   @question.time = params[:time].to_i
   if @question.save
-    redirect "/current_user.username"
+    redirect "/category/#{current_user.username}"
   else
     erb :'questions/edit'
   end
