@@ -34,6 +34,12 @@ get '/category/:cat_name' do
   redirect '/'
 end
 
+get '/:username' do
+  @user = User.find_by(username: params[:username])
+  @questions = @user.questions
+  erb :'users/show'
+end
+
 get '/login/:id' do
   session[:id] = params[:id]
   redirect '/'
@@ -44,6 +50,10 @@ get '/questions/new' do
   erb :'/questions/new'
 end
 
+get '/questions/:qid/edit' do 
+  @question = current_user.questions.find(params[:qid])
+  erb :'questions/edit'
+end
 
 # ##########
 # #STRETCH?#
@@ -71,7 +81,7 @@ post '/' do
   end 
 end
 
-post 'questions/:qid/vote' do
+post '/questions/:qid/vote' do
   @vote = current_user.votes.new(
     value: params[:option].to_i,
     question_id: params[:qid])
@@ -79,5 +89,21 @@ post 'questions/:qid/vote' do
     redirect '/'
   else
     redirect '/'
+  end
+end
+
+# EVERYTHING BELOW NEEDS TO BE TESTED
+post '/questions/:id/extend_time' do
+#  if params[:answer] == 'yes'
+#
+end
+
+post '/questions/:qid/edit' do
+  @question = current_user.questions.find(params[:qid])
+  @question.time = params[:time].to_i
+  if @question.save
+    redirect "/category/#{current_user.username}"
+  else
+    erb :'questions/edit'
   end
 end
