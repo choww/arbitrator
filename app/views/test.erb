@@ -11,6 +11,7 @@
     <%= question.votes.where(value: 0).count %><br/>
     <button value="1" name="option"><%= question.option_b %></button>: 
     <%= question.votes.where(value: 1).count %><br/>
+  </form>
 
     <% unless question.time.nil? %>
       <% if question.expired? %>

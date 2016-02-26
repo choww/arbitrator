@@ -82,9 +82,7 @@ post '/' do
 end
 
 post '/questions/:qid/vote' do
-  @vote = current_user.votes.new(
-    value: params[:option].to_i,
-    question_id: params[:qid])
+  @vote = current_user.add_or_update_vote(params[:qid].to_i, params[:option].to_i)
   if @vote.save
     redirect '/'
   else
