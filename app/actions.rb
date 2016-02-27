@@ -34,9 +34,11 @@ end
 
 get '/:username' do
   @user = User.find_by(username: params[:username])
-  @live_questions = @user.questions.where(resolved: false).order(created_at: :desc)
-  @expired_questions = @user.questions.where(resolved: true).order(created_at: :desc)
-  @tagged_questions = Question.where(tagged_user: @user.username).order(created_at: :desc)
+
+  @live_questions = get_user_questions(@user, false)
+  @expired_questions = get_user_questions(@user, true)
+  @live_tagged = get_tagged_questions(@user, false)
+  @expired_tagged = get_tagged_questions(@user, true)
   erb :'users/show'
 end
 
