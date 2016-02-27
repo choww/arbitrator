@@ -74,41 +74,30 @@ post '/' do
   end
 end
 
-# post '/questions/:qid/vote' do
-#   @question = Question.find(params[:qid].to_i)
-#   # if created?(@question) || current_user.username == @question.tagged_user
-#   #   @flash = "Can't vote on your own questions or questions you're tagged in!"
-#   #   redirect '/'
-#   # else
-#     @vote = current_user.add_or_update_vote(params[:qid].to_i, params[:option].to_i)
-#     @vote.save ? redirect('/') : redirect('/')
-#   # end
-# end
-
 post '/questions/:qid/vote' do
   content_type :json
   @question = Question.find(params[:qid].to_i)
-    @vote = current_user.add_or_update_vote(params[:qid].to_i, params[:option].to_i)
+  if !created?(@question) || !tagged?(@question)
+    @vote = current_user.add_or_update_vote(@question.id, params[:option].to_i)
     @vote.save
     array = []
-    array << @question.vote_count(0.to_i)
-    array << @question.vote_count(1.to_i)
+    array << @question.vote_count(0)
+    array << @question.vote_count(1)
     array.to_json
+  end
 end
-# EVERYTHING BELOW NEEDS TO BE TESTED
-#post '/questions/:id/extend_time' do
-#  if params[:answer] == 'yes'
-#
-#end
+
 post '/questions/:qid/edit' do
   @question = current_user.questions.find(params[:qid])
   @question.attributes = {
+    tagged_user: "",
     time: params[:time].to_i,
     resolved: false
   }
   if @question.save
     redirect request.referer
   else
-    erb :'questions/edit'
+    flash[:notice] = @question.errors.full_messages
+    redirect request.referer
   end
 end
