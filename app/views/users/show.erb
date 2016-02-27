@@ -1,6 +1,7 @@
 <div class="container">
   <!-- for easy navigation to live/expired Qs --feel free to move around or change -->
   <a href="#live_questions">Live Questions</a> | <a href="#expired_questions">Expired Questions</a>
+  <%if @live_questions %>
   <div class="row">
     <a name="live_questions"></a>
     <!-- feel free to remove / change <h3></h3>'s -->
@@ -12,7 +13,7 @@
   </div>
 <%end%>
 
-<%unless @expired_questions.nil?%>
+<%if @expired_questions %>
   <div class="row">
     <a name="expired_questions"></a>
     <h3>Expired</h3>

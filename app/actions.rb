@@ -50,9 +50,9 @@ get '/questions/new' do
   erb :'/questions/new'
 end
 
-delete '/questions/:qid/delete' do 
-  @question = Question.find(params[:qid])
-  @question.destroy
+get '/questions/:qid/delete' do 
+  question = Question.find(params[:qid])
+  question.destroy
   erb :'users/show'
 end
 
