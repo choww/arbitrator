@@ -17,6 +17,7 @@
   </div>
 </div>
 
+<%= erb :'users/question_users_partial', layout: false, locals: {question: question} %>
 <%= erb :outcome_draw_partial, layout: false, locals: {question: question} %>
 
 <% if created?(question) && question.resolved && question.votes.empty? %>
