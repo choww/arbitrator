@@ -50,10 +50,7 @@ get '/questions/new' do
   erb :'/questions/new'
 end
 
-get '/questions/:qid/edit' do
-  @question = current_user.questions.find(params[:qid])
-  erb :'questions/edit'
-end
+
 
 get '/questions/:qid/delete' do 
   @question = Question.find(params[:qid])
@@ -93,15 +90,3 @@ post '/questions/:qid/vote' do
   end
 end
 
-post '/questions/:qid/edit' do
-  @question = current_user.questions.find(params[:qid])
-  @question.attributes = {
-    time: params[:time].to_i,
-    resolved: false
-  }
-  if @question.save
-    redirect "/#{current_user.username}"
-  else
-    erb :'questions/edit'
-  end
-end
