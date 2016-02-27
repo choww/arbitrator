@@ -10,7 +10,7 @@ user_c = User.create(username: "CerealKiller", email: "ml@scoobysnacks.com", pas
 ################
 #Test Questions#
 ################
-q_a = user_a.questions.create(category: "sports", content: "Pippen v. Jordan", time: 60, option_a: "Pippen", option_b: "Jordan")
+q_a = user_a.questions.create(category: "sports", tagged_user: "", content: "Pippen v. Jordan", time: 60, option_a: "Pippen", option_b: "Jordan")
 
 
 ############

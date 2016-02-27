@@ -17,7 +17,7 @@ class Question < ActiveRecord::Base
   end
 
   def close_expired
-      self.update(resolved: true)
+    self.update(resolved: true)
   end
 
   def vote_count(answer)
@@ -25,7 +25,6 @@ class Question < ActiveRecord::Base
   end
 
   ## CUSTOM VALIDATIONS ##
-
   def tagged_user_is_registered
     if tagged_user != "" && User.where(username: tagged_user).empty?
       errors.add(:tagged_user, "is not a registered user!")

@@ -1,6 +1,6 @@
 helpers do
   def logged_in?
-    !session[:user_id].nil?
+    !session[:id].nil?
   end
 
   def current_user
@@ -37,9 +37,9 @@ helpers do
     Question.all.sort {|q1, q2| q2.votes.count <=> q1.votes.count}
   end
 
-  def format_time(time)
-    local_time = time.getlocal
-    (Time.now - local_time).abs
-  end
+  #def format_time(time)
+  #  local_time = time.getlocal
+  #  (Time.now - local_time).abs
+  #end
  
 end
