@@ -31,7 +31,7 @@
               </div>
             </div>
             <div class="col s2">
-            <% unless (question.user == current_user) || (question.tagged_user == current_user.username)  || (question.expired?) %>
+            <% unless created?(question) || tagged?(question)  || (question.expired?) %>
               <div class="left-button">
                   <button value ="0" id="<%=question.id%>" class="thumb-up btn-floating btn-large waves-effect waves-light red accent-2" value="1" name="option"><i class="check material-icons">thumb_up</i></button>
               </div>
@@ -58,7 +58,7 @@
               </div>
             </div>
             <div class="col s2">
-            <% unless (question.user == current_user) || (question.tagged_user == current_user.username) || (question.expired?) %>
+            <% unless created?(question) || tagged?(question) || (question.expired?) %>
               <div class="right-button">
                   <button value ="1" id="<%=question.id%>" class="thumb-up btn-floating btn-large waves-effect waves-light red accent-2" value="1" name="option"><i class="check material-icons">thumb_up</i></button>
               </div>
