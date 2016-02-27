@@ -13,8 +13,11 @@
             <%if created?(question) %>
               <form class="delete-form" action="/questions/<%= question.id %>/delete" method="POST">
                 <input type="hidden" name="_method" value="DELETE">
-                <button id="delete" class="delete-button"><i class="material-icons">cancel</i></button>
+                <button id="delete" class="tester btn-floating waves-effect waves-light red accent-2"><i class="dank material-icons">cancel</i></button>
               </form>
+            <% elsif tagged?(question) %>
+              <!-- feel free to style/change/move -->
+              <div class="tagged badge blue-grey darken-1 white-text">tagged</div>
             <%end%>
           </div>
         </div>
@@ -26,7 +29,7 @@
 
       <% if draw?(question) && question.votes.exists?  && question.resolved %>
         <div class="col s10 offset-s1">
-          <div class="badge light-blue darken-4 white-text center-align">draw</div>
+          <div class="draw badge light-blue darken-4 white-text center-align z-depth-2">Draw</div>
         </div>
       <% end %>
 
