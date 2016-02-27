@@ -1,4 +1,4 @@
-<% if draw?(question) && question.votes.exists?  && question.resolved %>
+<% if draw?(question) && question.votes.exists?  && question.expired? %>
   <div class="col s10 offset-s1">
     <div class="draw badge light-blue darken-4 white-text center-align z-depth-2">draw</div>
   </div>
