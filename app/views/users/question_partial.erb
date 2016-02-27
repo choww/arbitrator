@@ -7,15 +7,7 @@
 <div class="col s4">
   <div class="title z-depth-3">
     <%= question.content %>
-    <% if created?(question) %>
-      <form class="delete-form" action="/questions/<%= question.id %>/delete" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
-        <button id="delete" class="delete-button"><i class="material-icons">cancel</i></button>
-      </form>
-    <% elsif tagged?(question) %>
-      <!-- feel free to style/change/move -->
-      <div class="tagged badge blue-grey darken-1 white-text">tagged</div>
-    <% end %>
+    <%= erb :delete_or_tag_partial, layout: false, locals: {question: question} %>
   </div>
 </div>
 
@@ -25,11 +17,7 @@
   </div>
 </div>
 
-<% if draw?(question) && question.votes.exists? %>
-  <div class="col s10 offset-s1">
-    <div class="badge light-blue darken-4 white-text center-align">draw</div>
-  </div>
-<% end %>
+<%= erb :outcome_draw_partial, layout: false, locals: {question: question} %>
 
 <% if created?(question) && question.resolved && question.votes.empty? %>
   <div class="col s12">
