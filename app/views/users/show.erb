@@ -1,6 +1,7 @@
 <div class="container center-align">
   <a href="#live_questions">Live Questions</a> | <a href="#expired_questions">Expired Questions</a>
 
+
   <%if @live_questions.exists? %>
     <div class="row">
       <a name="live_questions"></a>
@@ -15,7 +16,6 @@
 
     </div>
   <% end %>
->>>>>>> 53e9d3aedee35ad8d72d19df178d2319b8694183
 
   <%if @expired_questions.exists? %>
     <div class="row">
