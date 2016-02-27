@@ -20,9 +20,9 @@
         <% if question.votes.empty? %>
           Extend time limit? <br/>
         <% end %>
-        expired <%= format_time(question.expire_time).round %> minutes ago
+        expired <%= format_time(question.expire_time).round %> seconds ago
       <% else %>
-      expires in <%= format_time(question.expire_time).round %> minutes
+      expires in <%= format_time(question.expire_time).round %> seconds
       <% end %>
     <% end %>
     <hr>
