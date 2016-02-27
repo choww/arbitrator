@@ -53,7 +53,7 @@ end
 delete '/questions/:qid/delete' do 
   @question = Question.find(params[:qid])
   @question.destroy
-  erb :'users/show'
+  redirect request.referer
 end
 
 # ##########
@@ -81,7 +81,7 @@ post '/questions/:qid/vote' do
     flash[:notice] = "Can't vote on your own questions or questions you're tagged in!"
   else
     @vote = current_user.add_or_update_vote(params[:qid].to_i, params[:option].to_i)
-    redirect '/' unless @vote.save  
+    redirect('/') unless @vote.save  
   end
   redirect request.referer
 end
