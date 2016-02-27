@@ -9,11 +9,16 @@ body, html {
 }
 
 #delete {
-  color: #de4a3e;
+  height: 40px;
+  width: 40px;
+  background-color: none;
 }
 
-#delete:hover {
-  color: teal;
+.dank {
+  margin-top: 3px;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
 }
 
 .delete-form {
@@ -215,4 +220,13 @@ input[type=text]:focus:not([readonly])+label, input[type="password"]:focus:not([
 
 .submit-question:hover {
   background-color: #c64236;
+}
+
+.draw {
+margin: auto;
+background-color: white;
+color: black;
+font-size: 20px;
+width: 25%;
+margin-top: 10px;
 }
