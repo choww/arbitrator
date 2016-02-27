@@ -23,6 +23,16 @@ helpers do
     filter.exists? ? filter :  Question.all 
   end
 
+  # where option is 0 or 1
+  def winner?(question, option)
+    hi_score = [question.vote_count(0), question.vote_count(1)].max
+    question.vote_count(option) == hi_score
+  end
+
+  def draw?(question)
+    question.vote_count(0) == question.vote_count(1)
+  end
+
   def popular_questions
     Question.all.sort {|q1, q2| q2.votes.count <=> q1.votes.count}
   end
