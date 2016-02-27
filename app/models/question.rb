@@ -6,16 +6,16 @@ class Question < ActiveRecord::Base
   validates :time, presence: true
   validates :content, presence: true, length: {maximum: 140}
   validates :option_a, presence: true, length: {maximum: 280}
-  validates :option_b, presence: true, length: {maximum: 280} 
+  validates :option_b, presence: true, length: {maximum: 280}
 
-  validate :tagged_user_is_registered
+  # validate :tagged_user_is_registered
   def expire_time
     updated_at + time.minutes if time
   end
 
   def expired?
-    time.nil? ? false : expire_time <= Time.now  
-  end  
+    time.nil? ? false : expire_time <= Time.now
+  end
 
   def close_expired
       self.update(resolved: true)
@@ -29,8 +29,6 @@ class Question < ActiveRecord::Base
   def tagged_user_is_registered
     if tagged_user && User.find_by(username: tagged_user).nil?
       errors.add(:tagged_user, "is not a registered user!")
-    end 
+    end
   end
  end
-
-

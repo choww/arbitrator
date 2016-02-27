@@ -55,7 +55,7 @@ get '/questions/:qid/edit' do
   erb :'questions/edit'
 end
 
-get '/questions/:qid/delete' do 
+get '/questions/:qid/delete' do
    question = Question.find(params[:qid])
    question.destroy
    redirect :'/'
@@ -82,17 +82,27 @@ post '/' do
   end
 end
 
-post '/questions/:qid/vote' do
-  @question = Question.find(params[:qid].to_i)
-  if created?(@question) || current_user.username == @question.tagged_user
-    @flash = "Can't vote on your own questions or questions you're tagged in!"
-    redirect '/'
-  else
-    @vote = current_user.add_or_update_vote(params[:qid].to_i, params[:option].to_i)
-    @vote.save ? redirect('/') : redirect('/')
-  end
-end
+# post '/questions/:qid/vote' do
+#   @question = Question.find(params[:qid].to_i)
+#   # if created?(@question) || current_user.username == @question.tagged_user
+#   #   @flash = "Can't vote on your own questions or questions you're tagged in!"
+#   #   redirect '/'
+#   # else
+#     @vote = current_user.add_or_update_vote(params[:qid].to_i, params[:option].to_i)
+#     @vote.save ? redirect('/') : redirect('/')
+#   # end
+# end
 
+post '/questions/:qid/vote' do
+  content_type :json
+  @question = Question.find(params[:qid].to_i)
+  @vote = current_user.add_or_update_vote(params[:qid].to_i, params[:option].to_i)
+  @vote.save
+  array = []
+  array << @question.vote_count(0.to_i)
+  array << @question.vote_count(1.to_i)
+  array.to_json
+end
 # EVERYTHING BELOW NEEDS TO BE TESTED
 #post '/questions/:id/extend_time' do
 #  if params[:answer] == 'yes'

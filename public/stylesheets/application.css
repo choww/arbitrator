@@ -81,11 +81,10 @@ body, html {
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-left: 100px;
   color: black;
   width: 150px;
   background-color: white;
-  font-size: 20px;
+  font-size: 12px;
   height: 100px;
   line-height: 50px;
 }
@@ -97,10 +96,23 @@ body, html {
   margin-bottom: 50px;
 }
 
+.left-vote {
+  padding-left: 25px;
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 150px;
+}
+
+.right-vote {
+  padding-right: 35px;
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 150px;
+}
+
 .left-button {
   padding-left: 20px;
-  height: 100%;
-  padding-top: 50px;
+  margin-top: -3px;
 }
 
 .question-right {
@@ -147,11 +159,15 @@ body, html {
   padding-top: 50px;
 }
 
-.btn-floating {
+.thumb-up {
   background-color: #de4a3e;
 }
 
-.btn-floating:hover {
+.thumb-up:hover {
+  background-color: #c64236;
+}
+
+.thumb-up:hover::after {
   background-color: #c64236;
 }
 
