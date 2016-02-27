@@ -8,9 +8,12 @@
       </div>
       <div class="col s4">
         <div class="title z-depth-3">
-          <%=question.content%>
-          <%if current_user.id == question.user_id%>
-            <a id="delete" href="/questions/<%=question.id%>/delete"><i class="material-icons">cancel</i></a>
+          <%= question.content %>
+          <% if created?(question) %>
+            <form class="delete-form" action="/questions/<%= question.id %>/delete" method="POST">
+              <input type="hidden" name="_method" value="DELETE">
+              <button id="delete" class="delete-button"><i class="material-icons">cancel</i></button>
+            </form>
           <%end%>
         </div>
       </div>
