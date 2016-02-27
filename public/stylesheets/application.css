@@ -12,10 +12,11 @@ body, html {
   height: 40px;
   width: 40px;
   background-color: none;
+  padding-top: 2px;
 }
 
 .dank {
-  margin-top: 3px;
+  margin-top: 5px;
   display: inline-block;
   width: 100%;
   height: 100%;
@@ -236,4 +237,14 @@ color: black;
 font-size: 20px;
 width: 25%;
 margin-top: 10px;
+}
+
+.created-cont {
+  margin-top: 10px;
+}
+
+.created-by {
+  font-size: 15px;
+  margin: auto;
+  width: 300px;
 }
