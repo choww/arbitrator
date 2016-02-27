@@ -10,15 +10,8 @@
         <div class="col s4">
           <div class="title z-depth-3">
             <%=question.content%>
-            <%if created?(question) %>
-              <form class="delete-form" action="/questions/<%= question.id %>/delete" method="POST">
-                <input type="hidden" name="_method" value="DELETE">
-                <button id="delete" class="tester btn-floating waves-effect waves-light red accent-2"><i class="dank material-icons">cancel</i></button>
-              </form>
-            <% elsif tagged?(question) %>
-              <!-- feel free to style/change/move -->
-              <div class="tagged badge blue-grey darken-1 white-text">tagged</div>
-            <%end%>
+
+            <%= erb :delete_or_tag_partial, layout: false, locals: {question: question} %>
           </div>
         </div>
         <div class="col s4">
@@ -26,13 +19,7 @@
             <time class="timeago z-depth-3" datetime="<%=question.expire_time.iso8601%>"><%=question.expire_time.strftime("%T")%></time>
           </div>
         </div>
-
-      <% if draw?(question) && question.votes.exists?  && question.resolved %>
-        <div class="col s10 offset-s1">
-          <div class="draw badge light-blue darken-4 white-text center-align z-depth-2">Draw</div>
-        </div>
-      <% end %>
-
+      <%= erb :outcome_draw_partial, layout: false, locals: {question: question} %>
         <div class="question col s6 z-depth-3">
           <div class="row">
             <div class="col s1">

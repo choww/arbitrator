@@ -1,0 +1,9 @@
+<% if created?(question) %>
+  <form class="delete-form" action="/questions/<%= question.id %>/delete" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <button id="delete" class="tester btn-floating waves-effect waves-light red accent-2"><i class="material-icons">cancel</i></button>
+  </form>
+<% elsif tagged?(question) %>
+  <!-- feel free to style/change/move -->
+  <div class="tagged badge blue-grey darken-1 white-text">tagged</div>
+<% end %>
