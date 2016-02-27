@@ -16,6 +16,13 @@ body, html {
   color: teal;
 }
 
+.tagged {
+  display: inline-block;
+  font-size: 12px;
+  padding: 5px;
+  line-height: 12px;
+}
+
 .delete-form {
   display:inline-block;
 }

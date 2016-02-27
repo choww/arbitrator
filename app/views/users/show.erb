@@ -1,7 +1,7 @@
 <div class="container center-align">
   <a href="#live_questions">Live Questions</a> | <a href="#expired_questions">Expired Questions</a>
 
-  <%if @live_questions.exists? %>
+  <%if @live_questions.exists? || @live_tagged.exists? %>
     <div class="row">
       <a name="live_questions"></a>
       <h3 class="white-text">Live</h3>
@@ -13,15 +13,26 @@
         </div>
       <% end %>
 
+      <% @live_tagged.each do |question| %>
+        <div class="question-container">
+          <%= erb :'users/question_partial', layout: false, locals: {question: question} %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 
-  <%if @expired_questions.exists? %>
+  <% if @expired_questions.exists? || @expired_tagged.exists? %>
     <div class="row">
       <a name="expired_questions"></a>
       <h3 class="white-text">Expired</h3>
-
+      
       <% @expired_questions.each do |question| %>
+        <div class="question-container">
+          <%= erb :'users/question_partial', layout: false, locals: {question: question} %>
+        </div>
+      <% end %>
+
+      <% @expired_tagged.each do |question| %>
         <div class="question-container">
           <%= erb :'users/question_partial', layout: false, locals: {question: question} %>
         </div>

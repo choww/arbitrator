@@ -18,6 +18,14 @@ helpers do
     end
   end
 
+  def get_user_questions(user,status)
+    Question.where(user_id: user.id, resolved: status).order(created_at: :desc)
+  end
+
+  def get_tagged_questions(user, status)
+    Question.where(resolved: status, tagged_user: user.username).order(created_at: :desc)
+  end
+
   def curr_category
     filter = Question.where(category: session[:category])
     filter.exists? ? filter :  Question.all 
