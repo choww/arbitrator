@@ -32,9 +32,9 @@ get '/category/:cat_name' do
   erb :index
 end
 
+
 get '/:username' do
   @user = User.find_by(username: params[:username])
-
   @live_questions = get_user_questions(@user, false)
   @expired_questions = get_user_questions(@user, true)
   @live_tagged = get_tagged_questions(@user, false)
@@ -57,9 +57,6 @@ delete '/questions/:qid/delete' do
   @question.destroy
   redirect request.referer
 end
-# ##########
-# #STRETCH?#
-# ##########
 
 ##################################
 #Posts                           #

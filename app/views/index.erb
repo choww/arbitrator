@@ -23,7 +23,6 @@
       <%= erb :'users/question_users_partial', layout: false, locals: {question: question} %>
 
       <%= erb :outcome_draw_partial, layout: false, locals: {question: question} %>
-
         <div class="question col s6 z-depth-3">
           <div class="row">
             <div class="col s1">
@@ -32,9 +31,11 @@
               </div>
             </div>
             <div class="col s2">
+            <% unless (question.user == current_user) || (question.tagged_user == current_user.username)  || (question.expired?) %>
               <div class="left-button">
                   <button value ="0" id="<%=question.id%>" class="thumb-up btn-floating btn-large waves-effect waves-light red accent-2" value="1" name="option"><i class="check material-icons">thumb_up</i></button>
               </div>
+            <%end%>
             </div>
             <div class="col s9">
               <div class="question-left">
@@ -57,9 +58,11 @@
               </div>
             </div>
             <div class="col s2">
+            <% unless (question.user == current_user) || (question.tagged_user == current_user.username) || (question.expired?) %>
               <div class="right-button">
                   <button value ="1" id="<%=question.id%>" class="thumb-up btn-floating btn-large waves-effect waves-light red accent-2" value="1" name="option"><i class="check material-icons">thumb_up</i></button>
               </div>
+            <%end%>
             </div>
             <div class="col s1">
               <div class="right-vote">
