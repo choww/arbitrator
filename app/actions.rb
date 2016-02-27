@@ -1,6 +1,6 @@
 # For voting create conditional if vote.user_id && vote.question_id then crash
-before do
-  current_user if logged_in?
+before do 
+  current_user if logged_in? 
 end
 ### FOR TEST PAGE ###
 
@@ -50,17 +50,6 @@ get '/questions/new' do
   erb :'/questions/new'
 end
 
-get '/questions/:qid/edit' do
-  @question = current_user.questions.find(params[:qid])
-  erb :'questions/edit'
-end
-
-get '/questions/:qid/delete' do 
-   question = Question.find(params[:qid])
-   question.destroy
-   redirect :'/'
- end
-
 # ##########
 # #STRETCH?#
 # ##########
@@ -79,12 +68,12 @@ post '/' do
     redirect '/'
   else
     erb :'/questions/new'
-  end
+  end 
 end
 
 post '/questions/:qid/vote' do
   @question = Question.find(params[:qid].to_i)
-  if created?(@question) || current_user.username == @question.tagged_user
+  if created?(@question) || tagged?(@question)
     @flash = "Can't vote on your own questions or questions you're tagged in!"
     redirect '/'
   else
@@ -92,12 +81,6 @@ post '/questions/:qid/vote' do
     @vote.save ? redirect('/') : redirect('/')
   end
 end
-
-# EVERYTHING BELOW NEEDS TO BE TESTED
-#post '/questions/:id/extend_time' do
-#  if params[:answer] == 'yes'
-#
-#end
 
 post '/questions/:qid/edit' do
   @question = current_user.questions.find(params[:qid])

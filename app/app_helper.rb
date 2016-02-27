@@ -12,6 +12,12 @@ helpers do
     current_user == question.user 
   end
 
+  def tagged?(question)
+    if question.tagged_user 
+      current_user.username == question.tagged_user
+    end
+  end
+
   def curr_category
     filter = Question.where(category: session[:category])
     filter.exists? ? filter :  Question.all 
