@@ -78,7 +78,7 @@ post '/questions/:qid/vote' do
   content_type :json
   @question = Question.find(params[:qid].to_i)
   if !created?(@question) || !tagged?(@question)
-    @vote = current_user.add_or_update_vote(@qustion.id, params[:option].to_i)
+    @vote = current_user.add_or_update_vote(@question.id, params[:option].to_i)
     @vote.save
     array = []
     array << @question.vote_count(0)
