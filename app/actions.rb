@@ -50,22 +50,14 @@ get '/questions/new' do
   erb :'/questions/new'
 end
 
-get '/questions/:qid/edit' do
-  @question = current_user.questions.find(params[:qid])
-  erb :'questions/edit'
+delete '/questions/:qid/delete' do
+  @question = Question.find(params[:qid])
+  @question.destroy
+  redirect request.referer
 end
-
-get '/questions/:qid/delete' do
-   question = Question.find(params[:qid])
-   question.destroy
-   redirect :'/'
- end
-
 # ##########
 # #STRETCH?#
 # ##########
-#   #view other users' pages with their questions, you cannot delete them
-
 
 ##################################
 #Posts                           #
@@ -96,19 +88,18 @@ end
 post '/questions/:qid/vote' do
   content_type :json
   @question = Question.find(params[:qid].to_i)
-  @vote = current_user.add_or_update_vote(params[:qid].to_i, params[:option].to_i)
-  @vote.save
-  array = []
-  array << @question.vote_count(0.to_i)
-  array << @question.vote_count(1.to_i)
-  array.to_json
+    @vote = current_user.add_or_update_vote(params[:qid].to_i, params[:option].to_i)
+    @vote.save
+    array = []
+    array << @question.vote_count(0.to_i)
+    array << @question.vote_count(1.to_i)
+    array.to_json
 end
 # EVERYTHING BELOW NEEDS TO BE TESTED
 #post '/questions/:id/extend_time' do
 #  if params[:answer] == 'yes'
 #
 #end
-
 post '/questions/:qid/edit' do
   @question = current_user.questions.find(params[:qid])
   @question.attributes = {
@@ -116,7 +107,7 @@ post '/questions/:qid/edit' do
     resolved: false
   }
   if @question.save
-    redirect "/#{current_user.username}"
+    redirect request.referer
   else
     erb :'questions/edit'
   end
