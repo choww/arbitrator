@@ -42,7 +42,6 @@
           </div>
 
           <button name="extend_time" value="yes" class="submit-question btn teal">Yes</button>
-          <!-- <button name="extend_time" value="no" class="submit-question btn">No</button> -->
         </form>
     </div>
   </div>
@@ -50,6 +49,12 @@
 
 <div class="question col s6 z-depth-3">
   <div class="row">
+    <div class="col s1">
+      <div class="left-vote">
+        <%=question.vote_count(0)%>
+      </div>
+    </div>
+
     <div class="col s2">
       <div class="left-button">
         <a class="btn-floating btn-large waves-effect waves-light"><i class="check material-icons">thumb_up</i></a>
@@ -69,18 +74,24 @@
 
 <div class="question col s6 z-depth-3">
   <div class="row">
-    <div class="col s10">
+    <div class="col s9">
       <div class="question-right">
         <%= erb :outcome_partial, layout: false, locals: {question: question, option: 1} %>
         <p>
-          <%= question.option_b %>
+          <%=question.option_b%>
         </p>
       </div>
     </div>
     <div class="col s2">
       <div class="right-button">
-        <a class="btn-floating btn-large waves-effect waves-light"><i class="check material-icons">thumb_up</i></a>
+          <button value ="1" id="<%=question.id%>" class="thumb-up btn-floating btn-large waves-effect waves-light red accent-2" value="1" name="option"><i class="check material-icons">thumb_up</i></button>
+      </div>
+    </div>
+    <div class="col s1">
+      <div class="right-vote">
+        <%=question.vote_count(1)%>
       </div>
     </div>
   </div>
+</div>
 </div>

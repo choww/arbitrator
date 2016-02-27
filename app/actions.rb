@@ -88,18 +88,18 @@ end
 post '/questions/:qid/vote' do
   content_type :json
   @question = Question.find(params[:qid].to_i)
+  if created?(@question) || tagged?(@question)
+    flash[:notice] = "Can't vote on your own questions or questions you're tagged in!"
+  else
     @vote = current_user.add_or_update_vote(params[:qid].to_i, params[:option].to_i)
     @vote.save
     array = []
     array << @question.vote_count(0.to_i)
     array << @question.vote_count(1.to_i)
     array.to_json
+  end
 end
-# EVERYTHING BELOW NEEDS TO BE TESTED
-#post '/questions/:id/extend_time' do
-#  if params[:answer] == 'yes'
-#
-#end
+
 post '/questions/:qid/edit' do
   @question = current_user.questions.find(params[:qid])
   @question.attributes = {

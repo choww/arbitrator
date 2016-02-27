@@ -16,6 +16,14 @@ body, html {
   color: teal;
 }
 
+.delete-form {
+  display:inline-block;
+}
+.delete-button {
+  border:none;
+  background: none;
+}
+
 .nav-wrapper {
   padding-right: 10px;
   padding-left: 10px;
