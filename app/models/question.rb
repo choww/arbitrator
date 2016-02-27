@@ -7,7 +7,6 @@ class Question < ActiveRecord::Base
   validates :content, presence: true, length: {maximum: 20}
   validates :option_a, presence: true, length: {maximum: 280}
   validates :option_b, presence: true, length: {maximum: 280} 
-
   validate :tagged_user_is_registered
   def expire_time
     updated_at + time.minutes if time
@@ -26,8 +25,10 @@ class Question < ActiveRecord::Base
   end
 
   ## CUSTOM VALIDATIONS ##
+
   def tagged_user_is_registered
-    if tagged_user && User.find_by(username: tagged_user).nil?
+    binding.pry
+    if tagged_user && User.where(username: tagged_user).empty?
       errors.add(:tagged_user, "is not a registered user!")
     end 
   end

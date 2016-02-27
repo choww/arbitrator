@@ -1,7 +1,7 @@
 <div class="container">
   <!-- for easy navigation to live/expired Qs --feel free to move around or change -->
-  <a href="#live_questions">Live Questions</a> | <a href="#expired_questions">Expird Questions</a>
-
+  <a href="#live_questions">Live Questions</a> | <a href="#expired_questions">Expired Questions</a>
+<%unless @live_questions.nil?%>
   <div class="row">
     <a name="live_questions"></a>
     <!-- feel free to remove / change <h3></h3>'s -->
@@ -10,7 +10,9 @@
       <%= erb :'users/question_partial', layout: false, locals: {question: question} %>
     <% end %>
   </div>
+<%end%>
 
+<%unless @expired_questions.nil?%>
   <div class="row">
     <a name="expired_questions"></a>
     <h3>Expired</h3>
@@ -19,5 +21,6 @@
       <%= erb :'users/question_partial', layout: false, locals: {question: question} %>
     <% end %>
   </div>
+<%end%>
 
 </div>
