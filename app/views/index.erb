@@ -24,11 +24,11 @@
           </div>
         </div>
 
+      <% if draw?(question) && question.votes.exists? %>
         <div class="col s10 offset-s1">
-          <% if draw?(question) && question.votes.exists? %>
-              <div class="badge light-blue darken-4 white-text center-align">draw</div>
-          <% end %>
+          <div class="badge light-blue darken-4 white-text center-align">draw</div>
         </div>
+      <% end %>
 
         <div class="question col s6 z-depth-3">
           <div class="row">

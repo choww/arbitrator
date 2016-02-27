@@ -1,4 +1,4 @@
-<div class="col s4">
+<div class="question-head col s4">
   <div class="category z-depth-3">
     <%= question.category %>
   </div>
@@ -22,11 +22,11 @@
   </div>
 </div>
 
-<div class="col s10 offset-s1">
-  <% if draw?(question) && question.votes.exists? %>
-      <div class="badge light-blue darken-4 white-text center-align">draw</div>
-  <% end %>
-</div>
+<% if draw?(question) && question.votes.exists? %>
+  <div class="col s10 offset-s1">
+    <div class="badge light-blue darken-4 white-text center-align">draw</div>
+  </div>
+<% end %>
 
 <% if created?(question) && question.resolved && question.votes.empty? %>
   <div class="col s12">
@@ -41,7 +41,7 @@
             <label>This question has no votes yet--would you like to extend the time limit?</label>
           </div>
 
-          <button name="extend_time" value="yes" class="submit-question btn teal">Yes</button>
+          <button name="extend_time" type="submit" class="submit-question btn teal">Yes</button>
         </form>
     </div>
   </div>
@@ -54,18 +54,16 @@
         <%=question.vote_count(0)%>
       </div>
     </div>
-
     <div class="col s2">
       <div class="left-button">
-        <a class="btn-floating btn-large waves-effect waves-light"><i class="check material-icons">thumb_up</i></a>
+          <button value ="0" id="<%=question.id%>" class="thumb-up btn-floating btn-large waves-effect waves-light red accent-2" value="1" name="option"><i class="check material-icons">thumb_up</i></button>
       </div>
     </div>
-
-    <div class="col s10">
+    <div class="col s9">
       <div class="question-left">
         <%= erb :outcome_partial, layout: false, locals: {question: question, option: 0} %>
         <p>
-          <%= question.option_a %>
+          <%=question.option_a%>
         </p>
       </div>
     </div>
@@ -93,5 +91,4 @@
       </div>
     </div>
   </div>
-</div>
 </div>

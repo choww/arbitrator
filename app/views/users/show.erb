@@ -1,24 +1,33 @@
 <div class="container center-align">
   <a href="#live_questions">Live Questions</a> | <a href="#expired_questions">Expired Questions</a>
-  <%if @live_questions %>
-  <div class="row">
-    <a name="live_questions"></a>
-    <h3 class="white-text">Live</h3>
-    <% @live_questions.each do |question| %>
-      <% question.close_expired if question.expired? %>
-      <%= erb :'users/question_partial', layout: false, locals: {question: question} %>
-    <% end %>
-  </div>
+
+  <%if @live_questions.exists? %>
+    <div class="row">
+      <a name="live_questions"></a>
+      <h3 class="white-text">Live</h3>
+
+      <% @live_questions.each do |question| %>
+        <% question.close_expired if question.expired? %>
+        <div class="question-container">
+          <%= erb :'users/question_partial', layout: false, locals: {question: question} %>
+        </div>
+      <% end %>
+
+    </div>
   <% end %>
 
-<%if @expired_questions %>
-  <div class="row">
-    <a name="expired_questions"></a>
-    <h3 class="white-text">Expired</h3>
-    <% @expired_questions.each do |question| %>
+  <%if @expired_questions.exists? %>
+    <div class="row">
+      <a name="expired_questions"></a>
+      <h3 class="white-text">Expired</h3>
 
-      <%= erb :'users/question_partial', layout: false, locals: {question: question} %>
-    <% end %>
-  </div>
-<%end%>
+      <% @expired_questions.each do |question| %>
+        <div class="question-container">
+          <%= erb :'users/question_partial', layout: false, locals: {question: question} %>
+        </div>
+      <% end %>
+
+    </div>
+  <%end%>
+
 </div>

@@ -103,12 +103,14 @@ end
 post '/questions/:qid/edit' do
   @question = current_user.questions.find(params[:qid])
   @question.attributes = {
+    tagged_user: "",
     time: params[:time].to_i,
     resolved: false
   }
   if @question.save
     redirect request.referer
   else
-    erb :'questions/edit'
+    flash[:notice] = @question.errors.full_messages
+    redirect request.referer
   end
 end
