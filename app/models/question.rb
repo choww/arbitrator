@@ -4,7 +4,7 @@ class Question < ActiveRecord::Base
   validates :user_id, presence: true
   validates :category, presence: true
   validates :time, presence: true
-  validates :content, presence: true, length: {maximum: 20}
+  validates :content, presence: true, length: {maximum: 140}
   validates :option_a, presence: true, length: {maximum: 280}
   validates :option_b, presence: true, length: {maximum: 280} 
   validate :tagged_user_is_registered
@@ -27,11 +27,8 @@ class Question < ActiveRecord::Base
   ## CUSTOM VALIDATIONS ##
 
   def tagged_user_is_registered
-    binding.pry
     if tagged_user && User.where(username: tagged_user).empty?
       errors.add(:tagged_user, "is not a registered user!")
     end 
   end
  end
-
-

@@ -1,6 +1,5 @@
 <div class="new-question-1 container">
   <div class="new-question z-depth-3">
-
     <% if @question.errors.any? %>
       <strong><%= @question.errors.count %> errors found</strong>
       <ul>
@@ -17,7 +16,7 @@
           <label for="content">Title</label>
         </div>
         <div class="input-field col s12">
-          <input id="content" type="text" name="question[tagged_user]" value="<%= @question.tagged_user %>">
+          <input id="content" type="text" name="question[tagged_user]">
           <label for="content">Tag a user for this question?</label>
         </div>
         <div class="input-field col s6">
