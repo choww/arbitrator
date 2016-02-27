@@ -29,7 +29,7 @@ helpers do
 
   def format_time(time)
     local_time = time.getlocal
-    (Time.now - local_time).abs / 60
+    (Time.now - local_time).abs
   end
  
 end

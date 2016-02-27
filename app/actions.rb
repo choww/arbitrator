@@ -53,8 +53,6 @@ end
 # ##########
 # #STRETCH?#
 # ##########
-#   #view other users' pages with their questions, you cannot delete them
-
 
 ##################################
 #Posts                           #
@@ -74,12 +72,12 @@ end
 post '/questions/:qid/vote' do
   @question = Question.find(params[:qid].to_i)
   if created?(@question) || tagged?(@question)
-    @flash = "Can't vote on your own questions or questions you're tagged in!"
-    redirect '/'
+    flash[:notice] = "Can't vote on your own questions or questions you're tagged in!"
   else
     @vote = current_user.add_or_update_vote(params[:qid].to_i, params[:option].to_i)
-    @vote.save ? redirect('/') : redirect('/')
+    redirect '/' unless @vote.save  
   end
+  redirect request.referer
 end
 
 post '/questions/:qid/edit' do
@@ -89,7 +87,7 @@ post '/questions/:qid/edit' do
     resolved: false
   }
   if @question.save
-    redirect "/#{current_user.username}"
+    redirect request.referer
   else
     erb :'questions/edit'
   end
