@@ -12,14 +12,6 @@ body, html {
   color: #de4a3e;
 }
 
-.delete-form {
-  display:inline-block;
-}
-.delete-button {
-  border:none;
-  background: none;
-}
-
 #delete:hover {
   color: teal;
 }
