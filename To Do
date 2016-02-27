@@ -1,9 +1,2 @@
 To Do
--Users can't vote for their own questions
--tagged_cannot vote for their own questions
--can't vote on resolved
--fix delete button on index views and user show view
--users can vote on expired questions
--show users' should also show view counter
--Doubles on show users' view
--Time counter doesn't seem consistent with options
+Create demo data

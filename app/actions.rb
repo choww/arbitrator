@@ -34,7 +34,8 @@ end
 
 get '/:username' do
   @user = User.find_by(username: params[:username])
-  @live_questions = @user.questions.where(resolved: false).order(created_at: :desc)
+  live_q = @user.questions.where(resolved: false).order(created_at: :desc)
+  @live_questions = live_q.each {|q| q.close_expired if q.expired?}
   @expired_questions = @user.questions.where(resolved: true).order(created_at: :desc)
   @tagged_questions = Question.where(tagged_user: @user.username).order(created_at: :desc)
   erb :'users/show'
@@ -55,9 +56,6 @@ delete '/questions/:qid/delete' do
   @question.destroy
   redirect request.referer
 end
-# ##########
-# #STRETCH?#
-# ##########
 
 ##################################
 #Posts                           #
