@@ -1,8 +1,24 @@
 <div class="col s10 offset-s1">
   <div class="card-panel center-align">
-    created by <%= question.user.username %>
+    created by
+    <% if created?(question) %>
+      you
+    <% else %>
+      <a href="/<%= question.user.username %>" class="user-links">
+        <%= question.user.username %>
+      </a>
+    <% end %>
+
     <% if question.tagged_user != '' %>
-      <div class="tagged badge blue-grey darken-1 white-text">tagged</div> <%= question.tagged_user %>
+      <div class="tagged badge blue-grey darken-1 white-text">tagged</div>
+      <% if tagged?(question) %>
+        you
+      <% else %>
+        <a href="<%= question.tagged_user %>" class="user-links">
+          <%= question.tagged_user %>
+        </a>
+      <% end %>
+
     <% end %>
 </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="question-head col s4">
+<div class="question-head col s4 ">
   <div class="category z-depth-3">
     <%= question.category %>
   </div>
@@ -7,7 +7,7 @@
 <div class="col s4">
   <div class="title z-depth-3">
     <%= question.content %>
-    <%= erb :delete_or_tag_partial, layout: false, locals: {question: question} %>
+    <%= erb :delete_question_partial, layout: false, locals: {question: question} %>
   </div>
 </div>
 
@@ -89,3 +89,5 @@
     </div>
   </div>
 </div>
+
+<div class="valign divider white col s10 offset-s1"></div>

@@ -1,13 +1,21 @@
 <div class="container center-align">
 
-  <div class="card-panel">
-    <a class="teal-text" href="#live_questions">Live Questions</a> | <a class="teal-text" href="#expired_questions">Expired Questions</a>
+  <div class="row">
+    <div class="col s4 offset-s1 link-btn waves-effect waves-light">
+    <a href="#live_questions">Live Questions</a>
+    </div>
+    <div class="col s4 offset-s2 link-btn waves-effect waves-light">
+      <a href="#expired_questions">Expired Questions</a>
+    </div>
   </div>
 
   <%if @live_questions.exists? || @live_tagged.exists? %>
-    <div class="row">
+    <div class="row section">
       <a name="live_questions"></a>
       <h3 class="white-text">Live</h3>
+
+      <div class="valign divider white col s10 offset-s1"></div>
+
       <% @live_questions.each do |question| %>
       <% question.close_expired if question.expired? %>
         <div class="question-container">
@@ -27,9 +35,11 @@
   <% end %>
 
   <% if @expired_questions.exists? || @expired_tagged.exists? %>
-    <div class="row">
+    <div class="row section">
       <a name="expired_questions"></a>
       <h3 class="white-text">Expired</h3>
+
+      <div class="valign divider white col s10 offset-s1"></div>
 
       <% @expired_questions.each do |question| %>
         <div class="question-container">
