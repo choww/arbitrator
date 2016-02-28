@@ -4,6 +4,10 @@ body, html {
   background-size: cover;
 }
 
+a {
+  color: #de4a3e;
+}
+
 .chip {
   background-color: #de4a3e;
 }
@@ -217,6 +221,18 @@ input[type=text]:focus:not([readonly])+label, input[type="password"]:focus:not([
   color: #de4a3e;
 }
 
+textarea[type=text]:focus:not([readonly]), input[type="password"]:focus:not([readonly]) {
+  border-bottom: 1px solid #de4a3e;
+  box-shadow: 0 1px 0 0 #de4a3e;
+}
+
+textarea[type=text]:focus:not([readonly])+label, input[type="password"]:focus:not([readonly])+label {
+  color: #de4a3e;
+}
+
+.select-wrapper li span{
+  color: #de4a3e;
+}
 .submit-question-div {
   text-align: center;
 }
