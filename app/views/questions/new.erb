@@ -13,20 +13,20 @@
 
     <form  method="post" action="/" class="col s12">
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s6">
           <input id="content" type="text" name="question[content]" value="<%= @question.content %>">
           <label for="content">Title</label>
         </div>
-        <div class="input-field col s12">
+        <div class="input-field col s6">
           <input id="content" type="text" name="question[tagged_user]">
           <label for="content">Tag a user for this question?</label>
         </div>
-        <div class="input-field col s6">
-          <input id="option_a" type="text" name="question[option_a]" value="<%= @question.option_a %>">
+        <div class="input-field col s12">
+          <textarea id="option_a" type="text" class="materialize-textarea" name="question[option_a]" value="<%= @question.option_a %>"></textarea>
           <label for="option_a">Option A</label>
         </div>
-        <div class="input-field col s6">
-          <input id="option_b" type="text" name="question[option_b]" value="<%= @question.option_b %>">
+        <div class="input-field col s12">
+          <textarea id="option_b" type="text" class="materialize-textarea" name="question[option_b]" value="<%= @question.option_b %>"></textarea>
           <label for="option_b">Option B</label>
         </div>
         <div class="testy input-field col s12" name="category">

@@ -1,5 +1,5 @@
-<div class="col s10 offset-s1">
-  <div class="card-panel center-align">
+<div class="created-cont col s10 offset-s1">
+  <div class="created-by card-panel center-align z-depth-3">
     created by
     <% if created?(question) %>
       you
@@ -10,7 +10,8 @@
     <% end %>
 
     <% if question.tagged_user != '' %>
-      <div class="tagged badge blue-grey darken-1 white-text">tagged</div>
+      <br/>
+      <div class="tagged badge red darken-1 white-text">tagged</div>
       <% if tagged?(question) %>
         you
       <% else %>
@@ -20,5 +21,5 @@
       <% end %>
 
     <% end %>
-</div>
+  </div>
 </div>
