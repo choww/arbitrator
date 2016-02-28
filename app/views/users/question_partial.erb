@@ -40,51 +40,53 @@
   </div>
 <% end %>
 
-<div class="question col s6 z-depth-3">
-  <div class="row">
-    <div class="col s1">
-      <div class="left-vote">
-        <%=question.vote_count(0)%>
+<div class="col s12">
+  <div class="question col s6 z-depth-3">
+    <div class="row">
+      <div class="col s1">
+        <div class="left-vote">
+          <%=question.vote_count(0)%>
+        </div>
       </div>
-    </div>
-    <div class="col s2">
-    <% unless (question.user == current_user) || (question.tagged_user == current_user.username)  || (question.expired?) %>
-      <div class="left-button">
-          <button value ="0" id="<%=question.id%>" class="thumb-up btn-floating btn-large waves-effect waves-light red accent-2" value="1" name="option"><i class="check material-icons">thumb_up</i></button>
+      <div class="col s2">
+      <% unless (question.user == current_user) || (question.tagged_user == current_user.username)  || (question.expired?) %>
+        <div class="left-button">
+            <button value ="0" id="<%=question.id%>" class="thumb-up btn-floating btn-large waves-effect waves-light red accent-2" value="1" name="option"><i class="check material-icons">thumb_up</i></button>
+        </div>
+      <%end%>
       </div>
-    <%end%>
-    </div>
-    <div class="col s9">
-      <div class="question-left">
-        <%= erb :outcome_partial, layout: false, locals: {question: question, option: 0} %>
-        <p>
-          <%=question.option_a%>
-        </p>
+      <div class="col s9">
+        <div class="question-left">
+          <%= erb :outcome_partial, layout: false, locals: {question: question, option: 0} %>
+          <p>
+            <%=question.option_a%>
+          </p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="question col s6 z-depth-3">
-  <div class="row">
-    <div class="col s9">
-      <div class="question-right">
-        <%= erb :outcome_partial, layout: false, locals: {question: question, option: 1} %>
-        <p>
-          <%=question.option_b%>
-        </p>
+  <div class="question col s6 z-depth-3">
+    <div class="row">
+      <div class="col s9">
+        <div class="question-right">
+          <%= erb :outcome_partial, layout: false, locals: {question: question, option: 1} %>
+          <p>
+            <%=question.option_b%>
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="col s2">
-    <% unless (question.user == current_user) || (question.tagged_user == current_user.username)  || (question.expired?) %>
-      <div class="right-button">
-          <button value ="1" id="<%=question.id%>" class="thumb-up btn-floating btn-large waves-effect waves-light red accent-2" value="1" name="option"><i class="check material-icons">thumb_up</i></button>
+      <div class="col s2">
+      <% unless (question.user == current_user) || (question.tagged_user == current_user.username)  || (question.expired?) %>
+        <div class="right-button">
+            <button value ="1" id="<%=question.id%>" class="thumb-up btn-floating btn-large waves-effect waves-light red accent-2" value="1" name="option"><i class="check material-icons">thumb_up</i></button>
+        </div>
+      <%end%>
       </div>
-    <%end%>
-    </div>
-    <div class="col s1">
-      <div class="right-vote">
-        <%=question.vote_count(1)%>
+      <div class="col s1">
+        <div class="right-vote">
+          <%=question.vote_count(1)%>
+        </div>
       </div>
     </div>
   </div>

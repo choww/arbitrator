@@ -18,15 +18,15 @@
           <label for="content">Title</label>
         </div>
         <div class="input-field col s6">
-          <input id="content" type="text" name="question[tagged_user]">
+          <input id="content" type="text" name="question[tagged_user]" value="<%= @question.tagged_user %>">
           <label for="content">Tag a user for this question?</label>
         </div>
         <div class="input-field col s12">
-          <textarea id="option_a" type="text" class="materialize-textarea" name="question[option_a]" value="<%= @question.option_a %>"></textarea>
+          <textarea id="option_a" type="text" class="materialize-textarea" name="question[option_a]" value="<%= @question.option_a %>"><%= @question.option_a %></textarea>
           <label for="option_a">Option A</label>
         </div>
         <div class="input-field col s12">
-          <textarea id="option_b" type="text" class="materialize-textarea" name="question[option_b]" value="<%= @question.option_b %>"></textarea>
+          <textarea id="option_b" type="text" class="materialize-textarea" name="question[option_b]" value="<%= @question.option_b %>"><%= @question.option_b %></textarea>
           <label for="option_b">Option B</label>
         </div>
         <div class="testy input-field col s12" name="category">
