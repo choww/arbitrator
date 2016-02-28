@@ -1,5 +1,12 @@
-<div class="created-cont col s12">
-  <div class="created-by card-panel center-align z-depth-3">
+<div class="created-cont col s12 valign-wrapper">
+
+  <div class="question-head col s4">
+    <div class="category z-depth-3">
+      <%=question.category%>
+    </div>
+  </div>
+
+  <div class="created-by center-align col s4">
     created by
     <% if created?(question) %>
       you
@@ -22,4 +29,13 @@
 
     <% end %>
   </div>
+
+  <div class="col s4">
+    <div class="expiration">
+      <time class="timeago z-depth-3" datetime="<%=question.expire_time.iso8601%>"><%=question.expire_time.strftime("%T")%></time>
+    </div>
+  </div>
+
+
+
 </div>

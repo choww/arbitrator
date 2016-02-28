@@ -2,23 +2,22 @@
   <div class="row">
     <% @questions.each do |question| %>
       <div class="question-container col s12">
-          <div class="question-head col s4">
+          <!-- <div class="question-head col s4">
             <div class="category z-depth-3">
-              <%=question.category%>
+              <%#=question.category%>
             </div>
-          </div>
-          <div class="col s4">
+          </div> -->
+          <div class="col s12 center-align">
             <div class="title z-depth-3">
               <%=question.content%>
-
               <%= erb :delete_question_partial, layout: false, locals: {question: question} %>
             </div>
           </div>
-          <div class="col s4">
+          <!-- <div class="col s4">
             <div class="expiration">
-              <time class="timeago z-depth-3" datetime="<%=question.expire_time.iso8601%>"><%=question.expire_time.strftime("%T")%></time>
+              <time class="timeago z-depth-3" datetime="<%=question.expire_time.iso8601%>"><%#=question.expire_time.strftime("%T")%></time>
             </div>
-          </div>
+          </div> -->
 
         <%= erb :'users/question_users_partial', layout: false, locals: {question: question} %>
         <%= erb :outcome_draw_partial, layout: false, locals: {question: question} %>
