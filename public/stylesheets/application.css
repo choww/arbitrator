@@ -301,7 +301,8 @@ margin-top: 10px;
 
   .question-head.col.s4 {
     width: 197px;
-    margin: 0;
+    margin-left: 0;
+    margin-right: 30px;
    }
   .category {
     font-size: 14px;
@@ -310,12 +311,12 @@ margin-top: 10px;
 
   .title {
     font-size: 20px;
-    width: 260px;
+    width: 360px;
   }
 
   .expiration {
     min-width: 200px;
-    margin-left: 40px;
+    margin-left: 10px;
    }
 
   .created-by { width: 260px; }
@@ -331,7 +332,8 @@ margin-top: 10px;
 
   .question-head.col.s4 {
     width: 197px;
-    margin: 0;
+    margin-left: 0;
+    margin-right: 30px;
    }
   .category {
     font-size: 14px;
@@ -340,12 +342,12 @@ margin-top: 10px;
 
   .title {
     font-size: 20px;
-    width: 260px;
+    width: 360px;
   }
 
   .expiration {
     min-width: 200px;
-    margin-left: 40px;
+    margin-left: 10px;
    }
 
   .created-by { width: 260px; }
