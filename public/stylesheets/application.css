@@ -285,3 +285,64 @@ margin-top: 10px;
   margin: auto;
   width: 350px;
 }
+
+/** MEDIA QUERIES **/
+@media only screen and (max-device-width: 1280px) {
+  .brand-logo b i {
+    font-size: 23px;
+    margin-right: 150px;
+  }
+  nav ul a { font-size: 12px; }
+  a.btn { padding: 0 10px; }
+
+  .question-head.col.s4 {
+    width: 197px;
+    margin: 0;
+   }
+  .category {
+    font-size: 14px;
+    width: 120px;
+   }
+
+  .title {
+    font-size: 20px;
+    width: 260px;
+  }
+
+  .expiration {
+    min-width: 200px;
+    margin-left: 40px;
+   }
+
+  .created-by { width: 260px; }
+}
+
+@media only screen and (max-width: 1280px) {
+  .brand-logo b i {
+    font-size: 23px;
+    margin-right: 150px;
+  }
+  nav ul a { font-size: 12px; }
+  a.btn { padding: 0 10px; }
+
+  .question-head.col.s4 {
+    width: 197px;
+    margin: 0;
+   }
+  .category {
+    font-size: 14px;
+    width: 120px;
+   }
+
+  .title {
+    font-size: 20px;
+    width: 260px;
+  }
+
+  .expiration {
+    min-width: 200px;
+    margin-left: 40px;
+   }
+
+  .created-by { width: 260px; }
+}
