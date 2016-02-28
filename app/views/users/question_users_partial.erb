@@ -2,7 +2,8 @@
   <div class="created-by card-panel center-align z-depth-3">
     created by <%= question.user.username %>
     <% if question.tagged_user != '' %>
+    <br>
       <div class="tagged badge red darken-1 white-text">tagged</div> <%= question.tagged_user %>
     <% end %>
-</div>
+  </div>
 </div>

@@ -3,11 +3,9 @@ body, html {
   background: url("/images/back.jpg") no-repeat center center fixed;
   background-size: cover;
 }
-
-a {
-  color: #de4a3e;
+.question-head.col.s4{
+  width: 260px;
 }
-
 .chip {
   background-color: #de4a3e;
 }
@@ -109,7 +107,7 @@ a {
   color: black;
   width: 150px;
   background-color: white;
-  font-size: 12px;
+  font-size: 18 px;
   height: 100px;
   line-height: 50px;
 }
@@ -231,9 +229,11 @@ textarea[type=text]:focus:not([readonly])+label, input[type="password"]:focus:no
   color: #de4a3e;
 }
 
+
 .select-wrapper li span{
   color: #de4a3e;
 }
+
 .submit-question-div {
   text-align: center;
 }
