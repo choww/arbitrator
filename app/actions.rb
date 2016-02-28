@@ -44,6 +44,7 @@ end
 
 get '/login/:id' do
   session[:id] = params[:id]
+  session[:category] = nil
   redirect '/'
 end
 
@@ -94,7 +95,7 @@ end
 post '/questions/:qid/edit' do
   @question = current_user.questions.find(params[:qid])
   @question.attributes = {
-    tagged_user: "",
+  #  tagged_user: "",
     time: params[:time].to_i,
     resolved: false
   }
