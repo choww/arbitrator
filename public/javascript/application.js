@@ -1,16 +1,18 @@
 $(document).ready(function() {
   $('select').material_select();
 
+  $('.button-collapse').sideNav();
+
   $('.delete-form').submit(function(e) {
     e.preventDefault();
-   
+
     var qid = $(this).attr('question-id');
     $.post('/questions/' + qid + '/delete', {_method: 'delete'}).done(
       console.log('success')
     );
-    $(this).closest('.question-container').remove();   
+    $(this).closest('.question-container').remove();
     });
- 
+
 
   $('.thumb-up').click(function() {
     var thumb = (this);
