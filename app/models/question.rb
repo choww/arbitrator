@@ -1,13 +1,16 @@
 class Question < ActiveRecord::Base
   has_many :votes
   belongs_to :user
+
   validates :user_id, presence: true
   validates :category, presence: true
   validates :time, presence: true
   validates :content, presence: true, length: {maximum: 25}
   validates :option_a, presence: true, length: {maximum: 280}
   validates :option_b, presence: true, length: {maximum: 280}
+
   validate :tagged_user_is_registered
+
   def expire_time
     updated_at + time.minutes if time
   end

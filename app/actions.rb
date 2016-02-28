@@ -52,10 +52,17 @@ get '/questions/new' do
   erb :'/questions/new'
 end
 
+##################################
+#Delete                          #
+##################################
+
 delete '/questions/:qid/delete' do
-  @question = Question.find(params[:qid])
-  @question.destroy
-  redirect request.referer
+  if request.xhr?
+    content_type :json   
+    @question = Question.find(params[:qid])
+    @question.destroy
+    {success: true, id: @question.id, message: "question delete"}.to_json
+  end
 end
 
 ##################################
@@ -66,7 +73,7 @@ post '/' do
   params[:time].to_i unless params[:time].nil?
   @question = current_user.questions.new(params[:question])
 
-  if @question.save
+ if @question.save
     redirect '/'
   else
     erb :'/questions/new'
@@ -76,14 +83,12 @@ end
 post '/questions/:qid/vote' do
   content_type :json
   @question = Question.find(params[:qid].to_i)
-  if !created?(@question) || !tagged?(@question)
-    @vote = current_user.add_or_update_vote(@question.id, params[:option].to_i)
-    @vote.save
-    array = []
-    array << @question.vote_count(0)
-    array << @question.vote_count(1)
-    array.to_json
-  end
+  @vote = current_user.add_or_update_vote(@question.id, params[:option].to_i)
+  @vote.save
+  array = []
+  array << @question.vote_count(0)
+  array << @question.vote_count(1)
+  array.to_json
 end
 
 post '/questions/:qid/edit' do

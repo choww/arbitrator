@@ -1,6 +1,8 @@
 <% if created?(question) %>
-  <form class="delete-form" action="/questions/<%= question.id %>/delete" method="POST">
-    <input type="hidden" name="_method" value="DELETE">
-    <button id="delete" class="tester btn-floating waves-effect waves-light red accent-2"><i class="material-icons">cancel</i></button>
-  </form>
+<form class="delete-form" question-id="<%= question.id %>" onsubmit="return confirm('Are you sure?');" action="/questions/<%= question.id %>/delete" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <button id="delete" class="delete-button tester btn-floating waves-effect waves-light red accent-2">
+    <i class="material-icons">cancel</i>
+  </button>
+</form>
 <% end %>

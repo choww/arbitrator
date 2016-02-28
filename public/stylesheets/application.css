@@ -20,6 +20,12 @@ body, html {
 .divider { margin-bottom: 40px; }
 
 .user-links { color: #E53935; }
+.user-links:hover {
+  background: #E53935;
+  color: #fff;
+  padding: 2px 5px;
+  border-radius: 16px;
+}
 
 .link-btn {
   background: #fff;
@@ -28,10 +34,9 @@ body, html {
 }
 .link-btn a { color: #E53935; }
 
-.link-btn:hover {
-  background: #E53935;
- }
+.link-btn:hover { background: #E53935; }
 .link-btn a:hover { color: #fff; }
+
 
 .dank {
   margin-top: 5px;
