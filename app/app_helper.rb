@@ -5,7 +5,7 @@ helpers do
 
   def current_user
    # uid = logged_in? ? 
-    @user = User.find(session[:id]) 
+    @user = logged_in? ? User.find(session[:id]) : User.new
   end
 
   def created?(question)

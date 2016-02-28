@@ -1,6 +1,6 @@
 # For voting create conditional if vote.user_id && vote.question_id then crash
 before do
-  current_user if logged_in?
+  current_user
 end
 ### FOR TEST PAGE ###
 
@@ -32,14 +32,8 @@ get '/category/:cat_name' do
   erb :index
 end
 
-
-get '/:username' do
-  @user = User.find_by(username: params[:username])
-  @live_questions = get_user_questions(@user, false)
-  @expired_questions = get_user_questions(@user, true)
-  @live_tagged = get_tagged_questions(@user, false)
-  @expired_tagged = get_tagged_questions(@user, true)
-  erb :'users/show'
+get '/login' do
+  erb :not_logged_in
 end
 
 get '/login/:id' do
@@ -48,9 +42,26 @@ get '/login/:id' do
   redirect '/'
 end
 
+get '/logout' do 
+  session[:id] = nil
+  session[:category] = nil
+  redirect '/'
+end
+
 get '/questions/new' do
   @question = Question.new
   erb :'/questions/new'
+end
+
+get '/:username' do
+  @user = User.find_by(username: params[:username])
+  if @user
+    @live_questions = get_user_questions(@user, false)
+    @expired_questions = get_user_questions(@user, true)
+    @live_tagged = get_tagged_questions(@user, false)
+    @expired_tagged = get_tagged_questions(@user, true)
+    erb :'users/show'
+  end
 end
 
 ##################################

@@ -1,8 +1,3 @@
-<!-- <div class="question-head col s4 ">
-  <div class="category z-depth-3">
-    <%#= question.category %>
-  </div>
-</div> -->
 <div class="question-container col s12 center-align">
 
   <div class="col s12 center-align">
@@ -11,12 +6,6 @@
       <%= erb :delete_question_partial, layout: false, locals: {question: question} %>
     </div>
   </div>
-
-  <!-- <div class="col s4">
-    <div class="expiration">
-      <time class="timeago z-depth-3" datetime="<%=question.expire_time.iso8601%>"><%#=question.expire_time.strftime("%T")%></time>
-    </div>
-  </div> -->
 
   <%= erb :'users/question_users_partial', layout: false, locals: {question: question} %>
   <%= erb :outcome_draw_partial, layout: false, locals: {question: question} %>

@@ -1,0 +1,5 @@
+<div class="card-panel center-align">
+  <% User.all.each do |user| %>
+    Login as <a href="login/<%= user.id %>"><%= user.username %></a><br/>
+  <% end %>
+</div>
