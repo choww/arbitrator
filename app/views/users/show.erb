@@ -18,7 +18,7 @@
 
       <% @live_questions.each do |question| %>
       <% question.close_expired if question.expired? %>
-        <div class="question-container">
+        <div class="question-container col s12">
           <%= erb :'users/question_partial', layout: false, locals: {question: question} %>
         </div>
       <% end %>
@@ -27,7 +27,7 @@
     <div class="row">
       <% @live_tagged.each do |question| %>
       <% question.close_expired if question.expired? %>
-        <div class="question-container">
+        <div class="question-container col s12">
           <%= erb :'users/question_partial', layout: false, locals: {question: question} %>
         </div>
       <% end %>
@@ -42,13 +42,13 @@
       <div class="valign divider white col s10 offset-s1"></div>
 
       <% @expired_questions.each do |question| %>
-        <div class="question-container">
+        <div class="question-container col s12">
           <%= erb :'users/question_partial', layout: false, locals: {question: question} %>
         </div>
       <% end %>
 
       <% @expired_tagged.each do |question| %>
-        <div class="question-container">
+        <div class="question-container col s12">
           <%= erb :'users/question_partial', layout: false, locals: {question: question} %>
         </div>
       <% end %>
