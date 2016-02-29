@@ -4,6 +4,10 @@ body, html {
   background-size: cover;
 }
 
+.select-wrapper li span {
+  color: #de4a3e;
+}
+
 .chip {
   background-color: #de4a3e;
 }
